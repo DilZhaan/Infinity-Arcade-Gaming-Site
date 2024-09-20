@@ -42,7 +42,7 @@ https://templatemo.com/tm-589-lugx-gaming
       <div class="row">
         <div class="col-lg-12">
           <h3>Our Shop</h3>
-          <span class="breadcrumb"><a href="#">Home</a> > Our Shop</span>
+          <span class="breadcrumb"><a href="index.jsp">Home</a> > Our Shop</span>
         </div>
       </div>
     </div>
@@ -53,15 +53,6 @@ https://templatemo.com/tm-589-lugx-gaming
       <ul class="trending-filter">
         <li>
           <a class="is_active" href="#!" data-filter="*">Show All</a>
-        </li>
-        <li>
-          <a href="#!" data-filter=".adv">Adventure</a>
-        </li>
-        <li>
-          <a href="#!" data-filter=".str">Strategy</a>
-        </li>
-        <li>
-          <a href="#!" data-filter=".rac">Racing</a>
         </li>
       </ul>
       <div class="row trending-box">
@@ -220,17 +211,6 @@ https://templatemo.com/tm-589-lugx-gaming
               <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <ul class="pagination">
-          <li><a href="#"> &lt; </a></li>
-            <li><a href="#">1</a></li>
-            <li><a class="is_active" href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#"> &gt; </a></li>
-          </ul>
         </div>
       </div>
     </div>
