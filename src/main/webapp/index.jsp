@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <title>Infinity Arcade - Online Gaming Site</title>
@@ -27,20 +26,14 @@
 	          <div class="caption header-text">
 	            <h6>Welcome to Infinity Arcade</h6>
 	            <h2>BEST GAMING SITE EVER!</h2>
-	            <p>LUGX Gaming is free Bootstrap 5 HTML CSS website template for your gaming websites. You can download and use this layout for commercial purposes. Please tell your friends about TemplateMo.</p>
-	            <div class="search-input">
-	              <form id="search" action="#">
-	                <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-	                <button role="button">Search Now</button>
-	              </form>
-	            </div>
+	            <p>Discover the ultimate collection of games at Infinity Arcade! From thrilling adventures to classic favorites, experience endless entertainment with easy access to all the top titles. Your next gaming journey starts here!</p>
 	          </div>
 	        </div>
 	        <div class="col-lg-4 offset-lg-2">
 	          <div class="right-image">
 	            <img src="assets/images/banner-image.jpg" alt="">
 	            <span class="price">$22</span>
-	            <span class="offer">-40%</span>
+	            <span class="offer">-100%</span>
 	          </div>
 	        </div>
 	      </div>

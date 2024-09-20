@@ -120,12 +120,12 @@ body {
 }
 
 ::selection {
-  background: #0071f8;
+  background: #262837;
   color: #fff;
 }
 
 ::-moz-selection {
-  background: #0071f8;
+  background: #262837;
   color: #fff;
 }
 
@@ -147,7 +147,7 @@ body {
 
 .section-heading h2 em {
   font-style: normal;
-  color: #0071f8;
+  color: #262837;
 }
 
 .section-heading h6 {
@@ -172,7 +172,7 @@ body {
 }
 
 .main-button a:hover {
-  background-color: #0071f8;
+  background-color: #262837;
   color: #fff;
 }
 
@@ -249,7 +249,7 @@ Pre-loader Style
   height: 16px;
   top: 12px;
   left: 15px;
-  background: #0071f8;
+  background: #262837;
   border-radius: 50%;
   -webkit-transform: translateX(0);
   transform: translateX(0);
@@ -272,7 +272,7 @@ Pre-loader Style
   width: 16px;
   height: 16px;
   margin-left: 16px;
-  background: #0071f8;
+  background: #262837;
   border-radius: 50%;
 }
 
@@ -285,7 +285,7 @@ Header Style
 */
 
 .background-header {
-  background-color: #0071f8 !important;
+  background-color: #262837 !important;
   border-radius: 0px 0px 25px 25px;
   height: 80px!important;
   position: fixed!important;
@@ -300,7 +300,7 @@ Header Style
 }
 
 .background-header .logo img {
-  max-width: 110px;
+  max-width: 500px;
 }
 
 .header-area {
@@ -386,8 +386,13 @@ Header Style
   letter-spacing: .25px;
 }
 
-.header-area .main-nav .nav li:last-child a {
+.header-area .main-nav .nav li #signIn {
   background-color: #ee626b;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.header-area .main-nav .nav li #signUp {
+  background-color: #77626b;
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -728,7 +733,7 @@ Banner Style
 }
 
 .main-banner .caption form button:hover {
-  background-color: #0071f8;
+  background-color: #262837;
 }
 
 .main-banner .right-image {
@@ -801,7 +806,7 @@ Services Style
   display: inline-block;
   text-align: center;
   line-height: 90px;
-  background-color: #0071f8;
+  background-color: #262837;
   border-radius: 50%;
   transition: all .3s;
 }
@@ -892,11 +897,11 @@ Trending Style
 }
 
 .trending .item:hover .down-content h4 {
-  color: #0071f8;
+  color: #262837;
 }
 
 .trending .item:hover .down-content a {
-  background-color: #0071f8;
+  background-color: #262837;
 }
 
 
@@ -968,11 +973,11 @@ Most Played Style
 }
 
 .most-played .item:hover .down-content h4 {
-  color: #0071f8;
+  color: #262837;
 }
 
 .most-played .item:hover .down-content a {
-  background-color: #0071f8;
+  background-color: #262837;
 }
 
 
@@ -987,7 +992,7 @@ Categories Style
 }
 
 .categories .item  {
-  background-color: #0071f8;
+  background-color: #262867;
   position: relative;
   border-radius: 25px;
   text-align: center;
@@ -1101,7 +1106,7 @@ CTA Style
 }
 
 .cta .subscribe form button:hover {
-  background-color: #0071f8;
+  background-color: #262837;
 }
 
 
@@ -1113,7 +1118,7 @@ Footer Style
 
 footer {
   margin-top: 150px;
-  background-color: #0071f8;
+  background-color: #262837;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(../images/footer-bg.jpg);
@@ -1289,11 +1294,11 @@ Shop Page Style
 }
 
 .trending-box .item:hover .down-content h4 {
-  color: #0071f8;
+  color: #262837;
 }
 
 .trending-box .item:hover .down-content a {
-  background-color: #0071f8;
+  background-color: #262837;
 }
 
 .trending ul.pagination {
@@ -1324,7 +1329,7 @@ Shop Page Style
 
 .trending ul.pagination li a:hover,
 .trending ul.pagination li a.is_active {
-  background-color: #0071f8;
+  background-color: #262837;
   color: #fff;
 }
 
@@ -1358,7 +1363,7 @@ Single Page Style
 .single-product span.price {
   font-size: 27px;
   font-weight: 700;
-  color: #0071f8;
+  color: #262837;
 }
 
 .single-product span.price em {
@@ -1410,7 +1415,7 @@ Single Page Style
 }
 
 .single-product form button:hover {
-  background-color: #0071f8;
+  background-color: #262837;
 }
 
 .single-product ul {
@@ -1421,7 +1426,7 @@ Single Page Style
   display: block;
   margin: 20px 0px;
   font-size: 14px;
-  color: #0071f8;
+  color: #262837;
 }
 
 .single-product ul li:last-child {
@@ -1468,7 +1473,7 @@ Single Page Style
 }
 
 .tabs-content .nav-tabs .nav-link.active {
-  color: #0071f8;
+  color: #262837;
 }
 
 .tabs-content .tab-content {
@@ -1569,7 +1574,7 @@ Contact PAge Style
 }
 
 .contact-page .right-content form button:hover {
-  background-color: #0071f8;
+  background-color: #262837;
 }
 
 /* 
