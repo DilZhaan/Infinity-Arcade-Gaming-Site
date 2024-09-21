@@ -11,7 +11,7 @@
                   <ul class="nav">
                     <li><a href="index.jsp" id="home">Home</a></li>
                     <li><a href="shop.jsp" id="shop">Our Shop</a></li>
-                    <li><a href="product-details.jsp" id="about">About Us</a></li>
+                    <li><a href="about.jsp" id="about">About Us</a></li>
                     <li><a href="contact.jsp" id="contact">Contact Us</a></li>
                     <li><a href="#" id="signUp">Sign up</a></li>
                     <li><a href="#" id="signIn">Sign In</a></li>
