@@ -29,7 +29,7 @@
       <div class="row">
         <div class="col-lg-12">
           <h3>Contact Us</h3>
-          <span class="breadcrumb"><a href="#">Home</a>  >  Contact Us</span>
+          <span class="breadcrumb"><a href="index.jsp">Home</a>  >  Contact Us</span>
         </div>
       </div>
     </div>
