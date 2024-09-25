@@ -50,11 +50,17 @@ form .col-md-6 {
     height:100%;
     margin-top:10px;
 }
-
+.form-group {
+    margin-top: 10px;
+}
+.form-control {
+    padding: 10px 10px 10px;
+}
 .form-control-file {
     width: 100%;
     padding: 10px;
     border: 1px solid #ced4da;
+    
     border-radius: 10px;
 }
 
@@ -71,7 +77,8 @@ form .col-md-6 {
 .image-preview {
     position: relative;
     width: 100%; 
-    height: 400px; 
+    height: 500px; 
+    min-height: 500px;
     border: 1px solid #ced4da; 
     display: flex;
     justify-content: center;
@@ -137,31 +144,31 @@ form .col-md-6 {
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="gameID">Game ID</label>
-                    <input type="text" class="form-control" id="gameID" placeholder="Enter Game ID" required>
+                    <input type="text" class="form-control" id="gameID" name="gameID" placeholder="Enter Game ID" required>
                 </div>
                 <div class="form-group">
                     <label for="gameName">Game Name</label>
-                    <input type="text" class="form-control" id="gameName" placeholder="Enter Game Name" required>
+                    <input type="text" class="form-control" id="gameName" name="gameName" placeholder="Enter Game Name" required>
                 </div>
                 <div class="form-group">
-                    <label for="gameName">Game Title</label>
-                    <input type="text" class="form-control" id="gameName" placeholder="Enter Game Title" required>
+                    <label for="gameTitle">Game Title</label>
+                    <input type="text" class="form-control" id="gameTitle" name="gameTitle" placeholder="Enter Game Title" required>
                 </div>
                 <div class="form-group">
-                    <label for="gameName">Deverloper</label>
-                    <input type="text" class="form-control" id="gameName" placeholder="Enter Deverloper Name" required>
+                    <label for="devName">Deverloper</label>
+                    <input type="text" class="form-control" id="devName" name="devName" placeholder="Enter Deverloper Name" required>
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="text" class="form-control" id="price" placeholder="$0.00" required>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="$0.00" required>
                 </div>
                 <div class="form-group">
                     <label for="genre">Genre</label>
-                    <input type="text" class="form-control" id="genre" placeholder="Enter genre (e.g., Action, Adventure)" required>
+                    <input type="text" class="form-control" id="genre" name="genre" placeholder="Enter genre (e.g., Action, Adventure)" required>
                 </div>
                 <div class="form-group">
                     <label for="tags">Multi-tags</label>
-                    <input type="text" class="form-control" id="tags" placeholder="Enter tags separated by commas" required>
+                    <input type="text" class="form-control" id="tags" name="tags" placeholder="Enter tags separated by commas" required>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Add Game</button>
             </div>
@@ -186,9 +193,7 @@ form .col-md-6 {
     	    reader.onload = function (e) {
     	      $('#blah')
     	        .attr('src', e.target.result)
-    	        .attr('style',"display = 'block'")
-    	        .width(150)
-    	        .height(200);
+    	        .attr('style',"display = 'block'");
     	      document.getElementById('image-placeholder').style.display = 'none';
     	    };
     	    reader.readAsDataURL(input.files[0]);
