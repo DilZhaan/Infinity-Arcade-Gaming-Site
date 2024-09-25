@@ -13,8 +13,34 @@
                     <li><a href="shop.jsp" id="shop">Our Shop</a></li>
                     <li><a href="about.jsp" id="about">About Us</a></li>
                     <li><a href="contact.jsp" id="contact">Contact Us</a></li>
-                    <li><a href="#" id="signUp">Sign up</a></li>
-                    <li><a href="#" id="signIn">Sign In</a></li>
+                    
+
+					<%
+                          // Check if the user is logged in
+                          String username = (String) session.getAttribute("username");
+                          Integer isAdmin = (Integer) session.getAttribute("is_admin");
+
+                          if (username == null) {
+                      %>
+                              <li><a href="#" id="signUp">Sign up</a></li>
+                              <li><a href="signIn.jsp" id="signIn">Sign In</a></li>
+                      <%
+                          } else {
+                              // User is logged in
+                              if (isAdmin != null && isAdmin == 1) {
+                      %>
+                                  <li><a href="#" id="adminDashboard">Admin Dashboard</a></li>
+                      <%
+                              } else {
+                      %>
+                                  <li><a href="#" id="userDashboard">User Dashboard</a></li>
+                      <%
+                              }
+                          }
+                      %>
+                    
+                    
+                    
                 </ul>   
                   <a class='menu-trigger'>
                       <span>Menu</span>
