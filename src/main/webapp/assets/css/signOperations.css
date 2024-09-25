@@ -3,7 +3,7 @@
 .body-content {
     display: flex;
     justify-content: space-between;
-    padding-top: 30px;
+    padding: 20px 50px;
 }
 .body-content .image {
     max-width: 50%;
@@ -23,9 +23,6 @@
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
     padding: 20px 40px;
     width: 50%;
-}
-.form h2 {
-    margin-bottom: 80px;
 }
 .form form label {
     display: flex;
