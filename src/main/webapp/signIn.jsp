@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/signOperations.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Infinity Arcade - Online Gaming Site</title>s
+    <title>Infinity Arcade - Online Gaming Site</title>
 
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
