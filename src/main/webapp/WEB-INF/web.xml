@@ -19,4 +19,44 @@
     <servlet-name>SignIn</servlet-name>
     <url-pattern>/SignIn</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddGame</display-name>
+    <servlet-name>AddGame</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.AddGame</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddGame</servlet-name>
+    <url-pattern>/AddGame</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditGame</display-name>
+    <servlet-name>EditGame</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.EditGame</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditGame</servlet-name>
+    <url-pattern>/EditGame</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DelGame</display-name>
+    <servlet-name>DelGame</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.DelGame</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelGame</servlet-name>
+    <url-pattern>/DelGame</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

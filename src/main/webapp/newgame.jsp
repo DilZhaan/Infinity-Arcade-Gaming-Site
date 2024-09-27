@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.InfinityArcade.models.*" %>
+<%@ page import="com.InfinityArcade.util.GameManager" %>
+
+<%
+	String gameID = request.getParameter("gameID");
+    Game game = GameManager.getGame(gameID); 
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -128,7 +137,7 @@ form .col-md-6 {
     </div>
     
     <div class="container mt-5" id="container">
-    <form id="addGameForm" enctype="multipart/form-data">
+    <form id="addGameForm" method="post" action="<%= (game == null) ? "AddGame" : "EditGame" %>" enctype="multipart/form-data">
         <div class="row">
             <!-- Left Section: Image Preview and File Input -->
             <div class="col-md-6">
@@ -138,7 +147,7 @@ form .col-md-6 {
 					    <img id="blah" src="#" alt="your image" onerror="this.onerror=null; this.src='';"  draggable="false" />
 					    <span id="image-placeholder">Preview</span>
 					</div>
-                    <input type="file" class="form-control-file" id="coverImage" accept=".jpg, .jpeg, .png, .gif" onchange="readURL(this);" required/>
+                    <input type="file" class="form-control-file" id="coverImage" name="img" accept=".jpg, .jpeg, .png, .gif" onchange="readURL(this);" required/>
                 </div>
             </div>
 
@@ -146,33 +155,38 @@ form .col-md-6 {
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="gameID">Game ID</label>
-                    <input type="text" class="form-control" id="gameID" name="gameID" placeholder="Enter Game ID" required>
+                    <input type="text" class="form-control" id="gameID" name="gameID" value="<%= (game != null) ? game.getGameID() : "" %>" placeholder="Enter Game ID" <%= (game != null) ? "readonly" : "required" %>>
+
                 </div>
                 <div class="form-group">
                     <label for="gameName">Game Name</label>
-                    <input type="text" class="form-control" id="gameName" name="gameName" placeholder="Enter Game Name" required>
+                    <input type="text" class="form-control" id="gameName" name="gameName"  value="<%= (game != null) ? game.getGameName() : "" %>" placeholder="Enter Game Name" required>
                 </div>
                 <div class="form-group">
                     <label for="gameTitle">Game Title</label>
-                    <input type="text" class="form-control" id="gameTitle" name="gameTitle" placeholder="Enter Game Title" required>
+                    <input type="text" class="form-control" id="gameTitle" name="gameTitle" value="<%= (game != null) ? game.getGameTitle() : "" %>" placeholder="Enter Game Title" required>
+                </div>
+                <div class="form-group">
+                    <label for="desc">Description</label>
+                    <textarea class="form-control" id="desc" name="desc" placeholder="Enter Game Description" required><%= (game != null) ? game.getDesc() : "" %></textarea>
                 </div>
                 <div class="form-group">
                     <label for="devName">Deverloper</label>
-                    <input type="text" class="form-control" id="devName" name="devName" placeholder="Enter Deverloper Name" required>
+                    <input type="text" class="form-control" id="devName" name="devName" placeholder="Enter Deverloper Name" value="<%= (game != null) ? game.getDevName() : "" %>" required>
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="text" class="form-control" id="price" name="price" placeholder="$0.00" required>
+                    <input type="text" class="form-control" id="price" name="price" value="<%= (game != null) ? game.getPrice() : "" %>" placeholder="$0.00" required>
                 </div>
                 <div class="form-group">
                     <label for="genre">Genre</label>
-                    <input type="text" class="form-control" id="genre" name="genre" placeholder="Enter genre (e.g., Action, Adventure)" required>
+                    <input type="text" class="form-control" id="genre" name="genre" value="<%= (game != null) ? game.getGenre() : "" %>" placeholder="Enter genre (e.g., Action, Adventure)" required>
                 </div>
                 <div class="form-group">
                     <label for="tags">Multi-tags</label>
-                    <input type="text" class="form-control" id="tags" name="tags" placeholder="Enter tags separated by commas" required>
+                    <input type="text" class="form-control" id="tags" name="tags" value="<%= (game != null) ? game.getTags() : "" %>" placeholder="Enter tags separated by commas" required>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Add Game</button>
+                <button type="submit" class="btn btn-primary mt-3"><%= (game == null) ? "Add Game" : "Edit Game" %></button>
             </div>
             
         </div>

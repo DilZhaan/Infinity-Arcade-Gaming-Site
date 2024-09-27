@@ -29,11 +29,17 @@
                               // User is logged in
                               if (isAdmin != null && isAdmin == 1) {
                       %>
-                                  <li><a href="#" id="adminDashboard">Admin Dashboard</a></li>
+                                  <li><a href="#" id="adminDashboard"><img src="assets/images/admin.png"> Admin :<%= session.getAttribute("username") %></a></li>
+                                  <li>
+                                  	<a href="LogoutServlet" onclick="return confirm('Are you sure you want to log out?');"><img src="assets/images/logout.png" > Log Out</a>
+                                  </li>
                       <%
                               } else {
                       %>
-                                  <li><a href="#" id="userDashboard">User Dashboard</a></li>
+                                  <li><a href="#" id="userDashboard"><img src="assets/images/user.jpeg" style="border-radius:100%;">User :<%= session.getAttribute("username") %></a></li>
+                                  <li>
+                                  	<a href="LogoutServlet" onclick="return confirm('Are you sure you want to log out?');"><img src="assets/images/logout.png" > Log Out</a>
+                                  </li>
                       <%
                               }
                           }
