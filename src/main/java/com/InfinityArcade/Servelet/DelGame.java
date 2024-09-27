@@ -9,9 +9,6 @@ import java.io.IOException;
 
 import com.InfinityArcade.util.GameManager;
 
-/**
- * Servlet implementation class DelGame
- */
 
 public class DelGame extends HttpServlet {
 	private static final long serialVersionUID = 1L;
