@@ -38,7 +38,13 @@
         <div class="form-card">
             <h2>Submit Your Game Review</h2>
             <feildset>
-            <form id="reviewForm">
+            <form id="reviewForm" action="#" method="post">
+            
+                 <label for="User">User</label>
+                <input  id="user" name="user"  readonly>
+                
+                <label for="Gameid">GameId</label>
+                <input id="gameid" name="gameid"  readonly>
                                
                 <label for="rating">Rating:</label>
                 <input type="number" id="rating" name="rating" min="1" max="10" required>
@@ -46,7 +52,7 @@
                 <label for="review">Review:</label>
                 <textarea id="review" name="review" rows="4" required></textarea>
                 
-                <button type="submit">Submit</button>
+                <button type="submit" name="submit">Submit</button>
             </form>
             </feildset>
         </div>
