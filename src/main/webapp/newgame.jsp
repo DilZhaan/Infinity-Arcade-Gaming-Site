@@ -14,105 +14,105 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <title>Infinity Arcade - Add New Game</title>
+    <title>Infinity Arcade - Online Gaming Site</title>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/infinityArcade-gaming.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <style>
-/* General Styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    color: #343a40;
-}
-
-#container {
-    margin-top: 30px;
-}
-
-/* Style the form layout to match the image */
-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-}
-
-form .row {
-    display: flex;
-    width: 100%;
-}
-
-form .col-md-6 {
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-/* Adjustments for file input and image preview */
-#blah {
-    display: block;
-    width: 100%; 
-    height: 400px; 
-    text-align: center;
-    height:100%;
-    margin-top:10px;
-}
-.form-group {
-    margin-top: 10px;
-}
-.form-control {
-    padding: 10px 10px 10px;
-}
-.form-control-file {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    
-    border-radius: 10px;
-}
-
-.form-control-file:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, .5);
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    width: 100%;
-}
-.image-preview {
-    position: relative;
-    width: 100%; 
-    height: 500px; 
-    min-height: 500px;
-    border: 1px solid #ced4da; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-
-#image-placeholder {
-    position: absolute;
-    font-size: 14px;
-    color: gray;
-    text-align: center;
-    display: none; 
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-    form {
-        flex-direction: column;
-    }
-}
+		/* General Styles */
+		body {
+		    font-family: 'Poppins', sans-serif;
+		    background-color: #f8f9fa;
+		    color: #343a40;
+		}
+		
+		#container {
+		    margin-top: 30px;
+		}
+		
+		/* Style the form layout to match the image */
+		form {
+		    background-color: white;
+		    padding: 20px;
+		    border-radius: 8px;
+		    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		    display: flex;
+		    justify-content: space-between;
+		}
+		
+		form .row {
+		    display: flex;
+		    width: 100%;
+		}
+		
+		form .col-md-6 {
+		    padding: 10px;
+		    box-sizing: border-box;
+		}
+		
+		/* Adjustments for file input and image preview */
+		#blah {
+		    display: block;
+		    width: 100%; 
+		    height: 400px; 
+		    text-align: center;
+		    height:100%;
+		    margin-top:10px;
+		}
+		.form-group {
+		    margin-top: 10px;
+		}
+		.form-control {
+		    padding: 10px 10px 10px;
+		}
+		.form-control-file {
+		    width: 100%;
+		    padding: 10px;
+		    border: 1px solid #ced4da;
+		    
+		    border-radius: 10px;
+		}
+		
+		.form-control-file:focus {
+		    border-color: #007bff;
+		    box-shadow: 0 0 5px rgba(0, 123, 255, .5);
+		}
+		
+		.btn-primary {
+		    background-color: #007bff;
+		    border-color: #007bff;
+		    width: 100%;
+		}
+		.image-preview {
+		    position: relative;
+		    width: 100%; 
+		    height: 500px; 
+		    min-height: 500px;
+		    border: 1px solid #ced4da; 
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    border-radius: 10px;
+		    margin-bottom: 10px;
+		}
+		
+		
+		#image-placeholder {
+		    position: absolute;
+		    font-size: 14px;
+		    color: gray;
+		    text-align: center;
+		    display: none; 
+		}
+		
+		/* Responsive styles */
+		@media (max-width: 768px) {
+		    form {
+		        flex-direction: column;
+		    }
+		}
 
     </style>
     <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -187,10 +187,8 @@ form .col-md-6 {
                     <input type="text" class="form-control" id="tags" name="tags" value="<%= (game != null) ? game.getTags() : "" %>" placeholder="Enter tags separated by commas" required>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3"><%= (game == null) ? "Add Game" : "Edit Game" %></button>
-            </div>
-            
+            </div>     
         </div>
-
     </form>
 </div>
     
@@ -203,23 +201,22 @@ form .col-md-6 {
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/custom.js"></script>
     <script>
-    function readURL(input) {
-    	  if (input.files && input.files[0]) {
-    	    var reader = new FileReader();
-    	    reader.onload = function (e) {
-    	      $('#blah')
-    	        .attr('src', e.target.result)
-    	        .attr('style',"display = 'block'");
-    	      document.getElementById('image-placeholder').style.display = 'none';
-    	    };
-    	    reader.readAsDataURL(input.files[0]);
-    	  }
-    	}
-	    document.getElementById('blah').onerror = function() {
+    	function readURL(input) {
+	    	  if (input.files && input.files[0]) {
+	    	    var reader = new FileReader();
+	    	    reader.onload = function (e) {
+	    	      $('#blah')
+	    	        .attr('src', e.target.result)
+	    	        .attr('style',"display = 'block'");
+	    	      document.getElementById('image-placeholder').style.display = 'none';
+	    	    };
+	    	    reader.readAsDataURL(input.files[0]);
+	    	  }
+	    }
+		document.getElementById('blah').onerror = function() {
 			this.style.display = 'none';
 	        document.getElementById('image-placeholder').style.display = 'block'; // Show the placeholder
 	    };
-
     </script>
 </body>
 

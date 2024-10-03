@@ -12,6 +12,7 @@ public class Game {
 	private String img;
 	private String uploadDate;
 	private String UpdatedDate;
+	
 	public String getGameID() {
 		return gameID;
 	}

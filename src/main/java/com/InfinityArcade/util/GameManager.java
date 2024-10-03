@@ -89,6 +89,48 @@ public class GameManager {
 
         return gameList;
     }
+    public static List<Game> getTrendingGames() {
+        List<Game> gameList = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBConnection.initializeDatabase();
+
+            String query = "SELECT * FROM game";
+            
+            //String query = "SELECT * FROM game g, rating r WHERE g.gameID = r.gameID ORDER BY r.rating DESC LIMIT 4;";
+            
+            pst = con.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Game game = new Game();
+                game.setGameID(rs.getString("gameID"));
+                game.setGameName(rs.getString("gameName"));
+                game.setGenre(rs.getString("genre"));
+                game.setImg(rs.getString("img"));
+                game.setPrice(rs.getDouble("price"));
+                
+
+                gameList.add(game);
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return gameList;
+    }
     
     public static Game getGame(String gameID) {
         Connection con = null;
