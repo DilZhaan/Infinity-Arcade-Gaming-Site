@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.InfinityArcade.models.*" %>
+<%@ page import="com.InfinityArcade.util.GameManager" %>
+
+<%
+	String gameID = request.getParameter("gameID");
+    if (gameID == null) {
+        response.sendRedirect("shop.jsp");
+        return; // Prevent further processing
+    }
+
+    Game game = GameManager.getGame(gameID); 
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,15 +33,15 @@
   </head>
 
 <body>
-
+	
   <jsp:include page="assets/config/header.jsp" />
 
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h3>Modern Warfare® II</h3>
-          <span class="breadcrumb"><a href="#">Home</a>  >  <a href="shop.jsp">Shop</a>  >  Assasin Creed</span>
+          <h3><%= game.getGameName() %> : <%= game.getGameTitle() %></h3>
+          <span class="breadcrumb"><a href="#">Home</a>  >  <a href="shop.jsp">Shop</a>  > <%= game.getGameName() %></span>
         </div>
       </div>
     </div>
@@ -38,20 +52,35 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="left-image">
-            <img src="assets/images/single-game.jpg" alt="">
+            <img src="<%= game.getImg() %>" alt="<%= game.getGameTitle() %>">
           </div>
         </div>
         <div class="col-lg-6 align-self-center">
-          <h4>Call of Duty®: Modern Warfare® II</h4>
-          <span class="price"><em>$28</em> $22</span>
-          <p>LUGX Gaming Template is based on the latest Bootstrap 5 CSS framework. This template is provided by TemplateMo and it is suitable for your gaming shop ecommerce websites. Feel free to use this for any purpose. Thank you.</p>
-          <form id="qty" action="#">
-            <button type="submit"><i class="fa fa-shopping-bag"></i> ADD TO CART</button>
-          </form>
+          <h4><%= game.getGameName() %> : <%= game.getGameTitle() %></h4>
+          <span class="price">$<%= game.getPrice() %></span>
+          <p> <%= game.getDesc() %> </p>
+          <%
+          	 Integer isAdmin = (Integer) session.getAttribute("is_admin");
+             if (isAdmin != null && isAdmin == 1) {
+          %>
+             <a href="newgame.jsp?gameID=<%= game.getGameID() %>" class="edit-button" style="margin-right: 60px;"><i class="fa fa-edit"></i>Edit Game</a>
+             <a href="DelGame?gameID=<%= game.getGameID() %>" class="delete-button" onclick="return confirm('Are you sure you want to delete this game?');">
+				<i class="fa fa-trash"></i> Delete Game
+			</a>
+              <%
+             } else {
+          %>
+             <a href="product-details.jsp?gameID=<%= game.getGameID() %>" id="bag"><i class="fa fa-shopping-bag"></i>ADD TO CART</a>
+          <%
+             }
+          %> 
           <ul>
-            <li><span>Game ID:</span> COD MMII</li>
-            <li><span>Genre:</span> <a href="#">Action</a>, <a href="#">Team</a>, <a href="#">Single</a></li>
-            <li><span>Multi-tags:</span> <a href="#">War</a>, <a href="#">Battle</a>, <a href="#">Royal</a></li>
+            <li><span>Game ID:</span> <%= game.getGameID() %></li>
+            <li><span>Genre:</span> <%= game.getGenre() %></li>
+            <li><span>Multi-tags:</span> <%= game.getTags() %> </li>
+            <li><span>Uploaded Date:</span> <%= game.getUploadDate() %> </li>
+            <li><span>Updated Date:</span> <%= game.getUpdatedDate() %> </li>
+            <li><span>Developer:</span> <%= game.getDevName() %> </li>
           </ul>
         </div>
         <div class="col-lg-12">
@@ -60,6 +89,7 @@
       </div>
     </div>
   </div>
+<button class="review-button" onclick="window.location.href='Review.jsp?gameID=<%= game.getGameID() %>'">Leave a Review</button>
 
   <jsp:include page="assets/config/footer.jsp" />
 

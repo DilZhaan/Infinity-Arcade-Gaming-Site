@@ -377,7 +377,10 @@ Header Style
   border: transparent;
   letter-spacing: .25px;
 }
-
+.header-area .main-nav .nav li a img{
+  max-width:40px;
+  margin-right:5px;
+}
 .header-area .main-nav .nav li #signIn {
   background-color: #ee626b;
   text-transform: uppercase;
@@ -1072,6 +1075,22 @@ Shop Page Style
 --------------------------------------------- 
 */
 
+.edit-button, .delete-button {
+ 
+  transition: color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
+}
+
+.edit-button:hover {
+  color: #008af8; /* Change color on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.delete-button:hover {
+  color: #ee626b; /* Change color on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+
 .trending ul.trending-filter {
   list-style: none;
   text-align: center;
@@ -1091,6 +1110,7 @@ Shop Page Style
   font-weight: 600;
   color: #1e1e1e;
   background-color: #eee;
+  border: 1px solid black;
   padding: 8px 20px;
   border-radius: 25px;
   transition: all .3s;
@@ -1107,6 +1127,12 @@ Shop Page Style
 
 .trending ul.trending-filter li a:hover {
   color: #ee626b;
+}
+.thumbnail-img {
+    width: 100%; /* Make the image fill the container's width */
+    height: 200px; /* Set a fixed height for the thumbnails */
+    object-fit: cover; /* Crop the image to fit the container */
+    border-radius: 8px; /* Optional: adds rounded corners */
 }
 
 .trending-box .item  {
@@ -1181,7 +1207,7 @@ Shop Page Style
   color: #262837;
 }
 
-.trending-box .item:hover .down-content a {
+.trending-box .item:hover .down-content #bag {
   background-color: #262837;
 }
 
@@ -1264,22 +1290,7 @@ Single Page Style
   margin-bottom: 60px;
 }
 
-.single-product form input {
-  width: 80px;
-  height: 50px;
-  background-color: #f7f7f7;
-  border: 1px solid #e7e7e7;
-  border-radius: 25px;
-  text-align: center;
-  float: left;
-  margin-right: 15px;
-}
-
-.single-product form {
-  display: inline;
-}
-
-.single-product form button {
+.single-product a {
   display: inline-block;
   height: 50px;
   line-height: 50px;
@@ -1294,11 +1305,11 @@ Single Page Style
   transition: all .3s;
 }
 
-.single-product form button i {
+.single-product a i {
   margin-right: 5px;
 }
 
-.single-product form button:hover {
+.single-product a:hover {
   background-color: #262837;
 }
 
@@ -1322,7 +1333,23 @@ Single Page Style
   display: inline-block;
   color: #aaa;
 }
+.review-button {
+    position: fixed;      /* Fix the button in place */
+    top: 50%;            /* Center vertically */
+    right: -55px;         /* Distance from the right edge */
+    transform: translateY(-50%) rotate(90deg); /* Center it truly vertically */
+    background-color: #007bff; /* Button color */
+    color: white;        /* Text color */
+    border: none;        /* No border */
+    border-radius: 5px;  /* Rounded corners */
+    padding: 10px 15px;  /* Padding */
+    font-size: 16px;     /* Font size */
+    z-index: 1000;       /* Ensure it appears above other content */
+}
 
+.review-button:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}
 
 /* 
 ---------------------------------------------

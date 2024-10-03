@@ -26,7 +26,6 @@ CREATE TABLE `games` (
   `game_id` varchar(50) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
-  `original_price` decimal(10,2) DEFAULT NULL,
   `description` text,
   PRIMARY KEY (`game_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
