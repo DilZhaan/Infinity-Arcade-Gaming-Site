@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div class="contact-page section">g
+  <div class="contact-page section">d
     <div class="container">
       <div class="row">
         <div class="col-lg-6 align-self-center">
