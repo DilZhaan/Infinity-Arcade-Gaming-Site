@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/infinityArcade-gaming.css">
     <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favico.png">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
@@ -70,7 +71,7 @@
               <%
              } else {
           %>
-             <a href="product-details.jsp?gameID=<%= game.getGameID() %>" id="bag"><i class="fa fa-shopping-bag"></i>ADD TO CART</a>
+             <a href="<%= game.getLink() %>" id="bag"><i class="fa fa-download"></i>Download</a>
           <%
              }
           %> 
