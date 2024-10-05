@@ -88,5 +88,32 @@
   <servlet-mapping>
     <servlet-name>UpdateReview</servlet-name>
     <url-pattern>/UpdateReview</url-pattern>
+    <display-name>AddInquire</display-name>
+    <servlet-name>AddInquire</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.AddInquire</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddInquire</servlet-name>
+    <url-pattern>/AddInquire</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateInquary</display-name>
+    <servlet-name>UpdateInquary</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.UpdateInquary</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateInquary</servlet-name>
+    <url-pattern>/UpdateInquary</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteInquary</display-name>
+    <servlet-name>DeleteInquary</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.DeleteInquary</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteInquary</servlet-name>
+    <url-pattern>/DeleteInquary</url-pattern>
   </servlet-mapping>
 </web-app>

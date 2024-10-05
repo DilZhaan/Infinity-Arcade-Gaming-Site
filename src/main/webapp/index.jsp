@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.util.*" %>
+<%@ page import="com.InfinityArcade.models.*" %>
+<%@ page import="com.InfinityArcade.util.GameManager" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+	
     <title>Infinity Arcade - Online Gaming Site</title>
     
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -15,7 +18,6 @@
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 </head>
 <body>
-	
 	
 	<jsp:include page="assets/config/header.jsp" />
 	
@@ -96,69 +98,48 @@
 	            <h2>Trending Games</h2>
 	          </div>
 	        </div>
-	        <div class="col-lg-6">
-	          <div class="main-button">
-	            <a href="shop.html">View All</a>
-	          </div>
-	        </div>
-	        <div class="col-lg-3 col-md-6">
-	          <div class="item">
-	            <div class="thumb">
-	              <a href="product-details.html"><img src="assets/images/trending-01.jpg" alt=""></a>
-	              <span class="price"><em>$28</em>$20</span>
-	            </div>
-	            <div class="down-content">
-	              <span class="category">Action</span>
-	              <h4>Assasin Creed</h4>
-	              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-lg-3 col-md-6">
-	          <div class="item">
-	            <div class="thumb">
-	              <a href="product-details.html"><img src="assets/images/trending-02.jpg" alt=""></a>
-	              <span class="price">$44</span>
-	            </div>
-	            <div class="down-content">
-	              <span class="category">Action</span>
-	              <h4>Assasin Creed</h4>
-	              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-lg-3 col-md-6">
-	          <div class="item">
-	            <div class="thumb">
-	              <a href="product-details.html"><img src="assets/images/trending-03.jpg" alt=""></a>
-	              <span class="price"><em>$64</em>$44</span>
-	            </div>
-	            <div class="down-content">
-	              <span class="category">Action</span>
-	              <h4>Assasin Creed</h4>
-	              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-lg-3 col-md-6">
-	          <div class="item">
-	            <div class="thumb">
-	              <a href="product-details.html"><img src="assets/images/trending-04.jpg" alt=""></a>
-	              <span class="price">$32</span>
-	            </div>
-	            <div class="down-content">
-	              <span class="category">Action</span>
-	              <h4>Assasin Creed</h4>
-	              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-	            </div>
-	          </div>
-	        </div>
+	        <%
+	        		Integer isAdmin = (Integer) session.getAttribute("is_admin");
+	        		List<Game> games = GameManager.getAllGames();
+                    for (Game game : games) {
+                %>
+                <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">
+                    <div class="item">
+                        <div class="thumb">
+						    <a href="product-details.jsp?gameID=<%= game.getGameID() %>">
+						        <img src="<%= game.getImg() %>" alt="<%= game.getGameName() %>" class="thumbnail-img">
+						    </a>
+						    <span class="price">$<%= game.getPrice() %></span>
+						</div>
+
+                        <div class="down-content">
+                            <span class="category"><%= game.getGenre() %></span>
+                            <h4><%= game.getGameName() %></h4>
+
+                            <%
+                                if (isAdmin != null && isAdmin == 1) {
+                            %>
+                                <a href="newgame.jsp?gameID=<%= game.getGameID() %>" class="edit-button" style="margin-right: 60px;"><i class="fa fa-edit"></i></a>
+                                <a href="DelGame?gameID=<%= game.getGameID() %>" class="delete-button" onclick="return confirm('Are you sure you want to delete this game?');">
+       								<i class="fa fa-trash"></i>
+       							</a>
+                            <%
+                                } else {
+                            %>
+                                <a href="product-details.jsp?gameID=<%= game.getGameID() %>" id="bag"><i class="fa fa-shopping-bag"></i></a>
+                            <%
+                                }
+                            %>
+                        </div>
+                    </div>
+                </div>
+                <%
+                    }
+                %>
 	      </div>
 	    </div>
 	  </div>
 	
-	  
-	  
 	  <div class="section cta">
 	    <div class="container">
 	      <div class="row">
