@@ -7,9 +7,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/AddReview")
 public class AddReview extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
