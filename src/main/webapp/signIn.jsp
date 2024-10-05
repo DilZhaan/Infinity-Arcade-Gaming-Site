@@ -21,6 +21,7 @@
 
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/infinityArcade-gaming.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favico.png">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
@@ -39,9 +40,6 @@
   </div>
     
     <div class="body-content">
-        <div class="image">
-            <img src="" alt="signIn image">
-        </div>
         <div class="form">
             <form method="post" action="SignInServlet">
                 <label>Username:</label>

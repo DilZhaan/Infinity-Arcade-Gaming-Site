@@ -1,18 +1,11 @@
 /* Dilshan Yapa S Y C T it23366572 */
 
+
 .body-content {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 50px;
-}
-.body-content .image {
-    max-width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.body-content .image img {
-    width: 90%;
+    display: flex; /* Enable Flexbox on the body */
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    background: #f5f7fa; /* Background color */
 }
 
 .form {
@@ -31,7 +24,7 @@
 .form form input {
     padding: 10px 20px;
     border: 1px solid blueviolet;
-    border-radius: 5px;
+    border-radius: 50px;
     margin: 10px;
     width: 100%;
 }

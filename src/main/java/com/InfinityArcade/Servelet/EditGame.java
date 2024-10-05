@@ -25,6 +25,7 @@ public class EditGame extends HttpServlet {
         newGame.setGameName(request.getParameter("gameName"));
         newGame.setGameTitle(request.getParameter("gameTitle"));
         newGame.setDesc(request.getParameter("desc"));
+        newGame.setLink(request.getParameter("link"));
         newGame.setDevName(request.getParameter("devName"));
         newGame.setPrice(Double.parseDouble(request.getParameter("price")));
         newGame.setGenre(request.getParameter("genre"));
