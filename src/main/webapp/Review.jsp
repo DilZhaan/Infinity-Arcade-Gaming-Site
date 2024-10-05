@@ -9,6 +9,7 @@
     <title>Infinity Arcade - Online Gaming Site</title>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favico.png">
     <link rel="stylesheet" href="assets/css/infinityArcade-gaming.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">

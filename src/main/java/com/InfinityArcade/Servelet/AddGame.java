@@ -24,11 +24,13 @@ public class AddGame extends HttpServlet {
         newGame.setGameID(request.getParameter("gameID"));
         newGame.setGameName(request.getParameter("gameName"));
         newGame.setGameTitle(request.getParameter("gameTitle"));
+        newGame.setLink(request.getParameter("gameLink"));
         newGame.setDesc(request.getParameter("desc"));
         newGame.setDevName(request.getParameter("devName"));
         newGame.setPrice(Double.parseDouble(request.getParameter("price")));
         newGame.setGenre(request.getParameter("genre"));
         newGame.setTags(request.getParameter("tags"));
+        
 
         Part filePart = request.getPart("img");
         

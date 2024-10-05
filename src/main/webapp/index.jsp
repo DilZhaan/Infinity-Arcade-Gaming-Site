@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="assets/css/infinityArcade-gaming.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favico.png">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 </head>
 <body>
@@ -99,7 +100,7 @@
 	        </div>
 	        <%
 	        		Integer isAdmin = (Integer) session.getAttribute("is_admin");
-	        		List<Game> games = GameManager.getAllGames();
+	        		List<Game> games = GameManager.getTrendingGames();
                     for (Game game : games) {
                 %>
                 <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">

@@ -4,6 +4,7 @@ public class Game {
 	private String gameID;
 	private String gameName;
 	private String desc;
+	private String link;
 	private double price;
 	private String gameTitle;
 	private String devName;
@@ -79,5 +80,11 @@ public class Game {
 	}
 	public void setUpdatedDate(String updatedDate) {
 		UpdatedDate = updatedDate;
+	}
+	public String getLink() {
+		return link;
+	}
+	public void setLink(String link) {
+		this.link = link;
 	}
 }

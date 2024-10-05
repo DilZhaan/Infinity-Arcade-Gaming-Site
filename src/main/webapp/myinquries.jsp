@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <title>Infinity Arcade - Online Gaming Site</title>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/images/favico.png">
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/infinityArcade-gaming.css">
     <link rel="stylesheet" href="assets/css/owl.css">
