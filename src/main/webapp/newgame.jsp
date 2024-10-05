@@ -116,6 +116,7 @@
 
     </style>
     <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/x-icon" href="assets/images/favico.png">
 	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
     
@@ -165,6 +166,10 @@
                 <div class="form-group">
                     <label for="gameTitle">Game Title</label>
                     <input type="text" class="form-control" id="gameTitle" name="gameTitle" value="<%= (game != null) ? game.getGameTitle() : "" %>" placeholder="Enter Game Title" required>
+                </div>
+                <div class="form-group">
+                    <label for="gameLink">Download Link</label>
+                    <input type="text" class="form-control" id="gameLink" name="gameLink" value="<%= (game != null) ? game.getLink() : "" %>" placeholder="Enter Downloadable Link" required>
                 </div>
                 <div class="form-group">
                     <label for="desc">Description</label>

@@ -18,8 +18,8 @@ public class GameManager {
             con = DBConnection.initializeDatabase();
 
             // Corrected SQL query with `desc` column name escaped
-            String query = "INSERT INTO game (gameID, gameName, `desc`, gameTitle, devName, genre, tags, img, price) " +
-                           "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO game (gameID, gameName, `desc`, gameTitle, devName, genre, tags, img, price,link) " +
+                           "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
             pst = con.prepareStatement(query);
             pst.setString(1, game.getGameID());
@@ -31,6 +31,7 @@ public class GameManager {
             pst.setString(7, game.getTags());
             pst.setString(8, game.getImg());
             pst.setDouble(9, game.getPrice());
+            pst.setString(10, game.getLink());
 
             returnValue = (pst.executeUpdate() > 0);
 
@@ -98,7 +99,7 @@ public class GameManager {
         try {
             con = DBConnection.initializeDatabase();
 
-            String query = "SELECT * FROM game";
+            String query = "SELECT * FROM game LIMIT 2;";
             
             //String query = "SELECT * FROM game g, rating r WHERE g.gameID = r.gameID ORDER BY r.rating DESC LIMIT 4;";
             
@@ -158,6 +159,7 @@ public class GameManager {
                 game.setGenre(rs.getString("genre"));
                 game.setTags(rs.getString("tags"));
                 game.setImg(rs.getString("img"));
+                game.setLink(rs.getString("link"));
                 game.setPrice(rs.getDouble("price"));
                 game.setUploadDate(rs.getString("uploadedDate"));
                 game.setUpdatedDate(rs.getString("updatedDate"));
@@ -187,7 +189,7 @@ public class GameManager {
             con = DBConnection.initializeDatabase();
 
             // Corrected SQL query with proper syntax
-            String query = "UPDATE game SET gameName = ?, `desc` = ?, gameTitle = ?, devName = ?, genre = ?, tags = ?, img = ?, price = ?, updatedDate = NOW() " +
+            String query = "UPDATE game SET gameName = ?, `desc` = ?, gameTitle = ?, devName = ?, genre = ?, tags = ?, img = ?, price = ?, link = ?, updatedDate = NOW() " +
                            "WHERE gameID = ?";
 
             // Check if gameID is null
@@ -204,7 +206,8 @@ public class GameManager {
             pst.setString(6, game.getTags());
             pst.setString(7, game.getImg());
             pst.setDouble(8, game.getPrice());
-            pst.setString(9, game.getGameID()); // Use gameID to identify which game to update
+            pst.setString(9, game.getLink());
+            pst.setString(10, game.getGameID()); // Use gameID to identify which game to update
 
             returnValue = (pst.executeUpdate() > 0);
 
