@@ -88,9 +88,6 @@
   <servlet-mapping>
     <servlet-name>UpdateReview</servlet-name>
     <url-pattern>/UpdateReview</url-pattern>
-    </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>AddInquire</display-name>
     <servlet-name>AddInquire</servlet-name>
     <servlet-class>com.InfinityArcade.Servelet.AddInquire</servlet-class>
