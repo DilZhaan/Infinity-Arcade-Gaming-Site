@@ -89,4 +89,14 @@
     <servlet-name>UpdateReview</servlet-name>
     <url-pattern>/UpdateReview</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReadReview</display-name>
+    <servlet-name>ReadReview</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.ReadReview</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReadReview</servlet-name>
+    <url-pattern>/ReadReview</url-pattern>
+  </servlet-mapping>
 </web-app>
