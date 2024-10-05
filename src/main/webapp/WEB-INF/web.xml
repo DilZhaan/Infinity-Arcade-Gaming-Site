@@ -61,6 +61,33 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>AddReview</display-name>
+    <servlet-name>AddReview</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.AddReview</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddReview</servlet-name>
+    <url-pattern>/AddReview</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteReview</display-name>
+    <servlet-name>DeleteReview</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.DeleteReview</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteReview</servlet-name>
+    <url-pattern>/DeleteReview</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateReview</display-name>
+    <servlet-name>UpdateReview</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.UpdateReview</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateReview</servlet-name>
+    <url-pattern>/UpdateReview</url-pattern>
     <display-name>AddInquire</display-name>
     <servlet-name>AddInquire</servlet-name>
     <servlet-class>com.InfinityArcade.Servelet.AddInquire</servlet-class>
