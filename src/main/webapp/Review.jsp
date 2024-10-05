@@ -5,11 +5,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Review Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Infinity Arcade - Online Gaming Site</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/infinityArcade-gaming.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="assets/css/Review.css">
 </head>
 <body>
-    <div class="container">
+	<jsp:include page="assets/config/header.jsp" />
+	
+	  <div class="page-heading header-text">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-lg-12">
+	          <h3>Contact Us</h3>
+	          <span class="breadcrumb"><a href="index.jsp">Home</a>  >  Contact Us</span>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	 
+    <div class="containerRev">
     
     <div class="table-card">
             <h2>Game Reviews</h2>
@@ -59,7 +79,16 @@
         
         
     </div>
+ <jsp:include page="assets/config/footer.jsp" />
 
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/counter.js"></script>
+  <script src="assets/js/custom.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
