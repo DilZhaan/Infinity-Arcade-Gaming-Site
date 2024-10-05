@@ -3,10 +3,21 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" type="text/css" href="../styles/generalStyle.css">
         <link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
-        <title>Infinity Arcade | Admin Dashboard</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Infinity Arcade - Online Gaming Site</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/infinityArcade-gaming.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+        <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
         <style>
+        	.body-content{
+			    margin: 0px 5% 5% 5%;
+			}
             .headding {
                 margin-top: 50px;
             }
@@ -18,8 +29,9 @@
                 padding: 10px 10px 50px 10px;
                 background-color: #d8d9d85f;
                 margin-bottom: 50px;
+                margin-top: 70px;
             }
-            h1,h3 {
+            h1 {
                 text-align: left;
             }
             table {
@@ -83,7 +95,18 @@
         </style>
     </head>
     <body>
-    
+     <jsp:include page="assets/config/header.jsp" />
+
+    <div class="page-heading header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>My Inquaries</h3>
+                    <span class="breadcrumb"><a href="index.jsp">Home</a> > <a href="shop.jsp"> User Dashboard</a> > My Inquaries </span>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="body-content">
     <div class="userDashboardMenu">
                 <div class="user">
@@ -96,16 +119,14 @@
                 </div>
                 <div class="navList">
                     <ul class="linkList">
-                        <li onclick="loadContent('myinfo');"> Profile Information </li>
-                        <li onclick="loadContent('loyalty');"> Loyalty Customer </li>
-                        <li onclick="loadContent('inquary');"> My Inquaries </li>
+                        <li onclick="loadContent('myinfo');">Profile Information</li>
+                        <li onclick="loadContent('inquary');">My Inquaries</li>
                         <li style="background-color: rgba(125, 23, 41, 0.81); color:#fff" onclick=" if(window.confirm('Do you want to Delete Your Account?')){document.location = '../Process/delAcc-Process.php';}"> Delete Account </li>
                         <li style="background-color: #f00;color:#fff" onclick="if(window.confirm('Do you want to Sign Out?')){document.location = '../Process/signOut-Process.php';}" id="logout"> Sign Out </li>
                     </ul>
                 </div>
       </div>
       <div class='content'>
-        <h1 class="headding">My Inquaries</h1>
             <div class="inquariesContainer">
                 <h3>Inquaries</h3>
                 <div class="inquaryListWrapper">
@@ -136,5 +157,12 @@
             </div>
       </div>
       </div>
+      
+      <jsp:include page="assets/config/footer.jsp" />
+
+    <!-- Scripts -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/custom.js"></script>
     </body>
 </html>

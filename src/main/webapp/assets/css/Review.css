@@ -2,18 +2,18 @@
 body {
     font-family: Arial, sans-serif;
     background-color:#FFFAF0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 90%;
     margin: 10;
 }
 
-.container {
+.containerRev {
+	margin: 30px auto 30px auto;
+    justify-content: center;
+    align-items: center;
     display: flex;
     flex-direction: row;
     gap: 30px;
-    width: 50%;
+    width: 70%;
     max-width: 1200px;
 }
 
