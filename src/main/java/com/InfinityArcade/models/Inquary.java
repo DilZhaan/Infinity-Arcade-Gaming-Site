@@ -48,7 +48,6 @@ public class Inquary {
 		return userID;
 	}
 	
-	
-	
+		
 
 }
