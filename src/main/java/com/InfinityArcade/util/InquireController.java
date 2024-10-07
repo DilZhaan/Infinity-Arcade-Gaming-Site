@@ -49,9 +49,9 @@ public class InquireController {
 
 	}
 	
-	public static List<Inquary> readAllInquary(String userID) {
+	public static List<Inquary> readAllInquary(String userID, Object inquary) {
 
-        List<Game> gameList = new ArrayList<>();
+        List<Inquary> inquaryList = new ArrayList<>();
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -59,20 +59,20 @@ public class InquireController {
         try {
             con = DBConnection.initializeDatabase();
 
-            String query = "SELECT * FROM game WHERE ";
+            String query = "SELECT * FROM inquary WHERE ";
             pst = con.prepareStatement(query);
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                Game game = new Game();
-                game.setGameID(rs.getString("gameID"));
-                game.setGameName(rs.getString("gameName"));
-                game.setGenre(rs.getString("genre"));
-                game.setImg(rs.getString("img"));
-                game.setPrice(rs.getDouble("price"));
+            	Inquary inquary1 = new Inquary();
+                inquary1.setinquaryID(rs.getString("InquaryID"));
+                inquary1.setName(rs.getString("Name"));
+                inquary1.setEmail(rs.getString("Email"));
+                inquary1.setSubject(rs.getString("Subject"));
+                inquary1.setmessage(rs.getString("Message"));
                 
 
-                gameList.add(game);
+                inquaryList.add(inquary1);
             }
 
         } catch (SQLException | ClassNotFoundException e) {
@@ -87,13 +87,83 @@ public class InquireController {
             }
         }
 
-        return gameList;
+        return inquaryList;
     
 	}
-	public static void updateInquary(Inquary updatedInquary) {
+	public static boolean updateInquary(Inquary updatedInquary) {
+		
+	        Connection con = null;
+	        PreparedStatement pst = null;
+	        boolean returnValue = false;
+
+	        try {
+	            con = DBConnection.initializeDatabase();
+
+	            
+	            String query = "UPDATE inquary SET Name = ?, Email = ?, Subject = ?, Message = ?, updatedDate = NOW() " +
+	                           "WHERE inquaryID = ?";
+
+	            
+	            if (updatedInquary.getinquaryID() == null) {
+	                throw new IllegalArgumentException("Inquary ID cannot be null");
+	            }
+
+	            pst = con.prepareStatement(query);
+	            pst.setString(1, updatedInquary.getname());
+	            pst.setString(2, updatedInquary.getEmail());
+	            pst.setString(3, updatedInquary.getSubject());
+	            pst.setString(4, updatedInquary.getmessage());
+	            pst.setString(5, updatedInquary.getinquaryID()); // Use inquaryID to identify which game to update
+
+	            returnValue = (pst.executeUpdate() > 0);
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } catch (ClassNotFoundException e) {
+	            e.printStackTrace();
+	        } finally {
+	            try {
+	                if (pst != null) pst.close();
+	                if (con != null) con.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+
+	        return returnValue;
+	    }
 
 	}
 	public static boolean deleteInquary(String inquaryID) {
-		return false;
+		Connection con = null;
+        PreparedStatement pst = null;
+        boolean returnValue = false;
+
+        try {
+            con = DBConnection.initializeDatabase(); // Initialize your database connection
+
+            // Prepare SQL DELETE statement
+            String query = "DELETE FROM inquary WHERE inquaryID = ?";
+            
+            pst = con.prepareStatement(query);
+            pst.setString(1, inquaryID);
+
+            // Execute the update and check if any rows were affected
+            returnValue = (pst.executeUpdate() > 0);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            // Clean up resources
+            try {
+                if (pst != null) pst.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		return returnValue;
 	}
 }
