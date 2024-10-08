@@ -1,5 +1,60 @@
-/* Dilshan Yapa S Y C T  */
-.body-content {
+@charset "UTF-8";
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.userDetailContainer, .accDetailContainer {
+    margin: 20px 0;
+    padding: 15px;
+        border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.userDetailContainer h2, .accDetailContainer h2 {
+    color: #007BFF; /* Using the same color as the h2 in the previous context */
+}
+
+.userDetailContainer p, .accDetailContainer p {
+    color: #555;
+    line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+}
+
+
+
+
+
+
+
+     
+        .body-content {
     display: flex;
     justify-content: space-between;
 }
@@ -66,3 +121,4 @@
     max-width: calc(100% - 320px);
     width: 100%;
 }
+ 

@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.InfinityArcade.models.Inquary" %>
+<%@ page import="com.InfinityArcade.util.InquireController" %>
+    
+<%
+	String inquaryID = request.getParameter("inquaryID");
+	Inquary inq = InquireController.getInq(inquaryID);
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,11 +54,11 @@
               <h6>Contact Us</h6>
               <h2>Say Hello!</h2>
             </div>
-            <p>LUGX Gaming Template is based on the latest Bootstrap 5 CSS framework. This template is provided by TemplateMo and it is suitable for your gaming shop ecommerce websites. Feel free to use this for any purpose. Thank you.</p>
+            <p>Discover the ultimate collection of games at Infinity Arcade! From thrilling adventures to classic favorites, experience endless entertainment with easy access to all the top titles. Your next gaming journey starts here!</p>
             <ul>
-              <li><span>Address</span> Sunny Isles Beach, FL 33160, United States</li>
-              <li><span>Phone</span> +123 456 7890</li>
-              <li><span>Email</span> lugx@contact.com</li>
+              <li><span>Address</span> Infinity Arcade, Kaduwela Rd, Malabe</li>
+              <li><span>Phone</span> +94 11 2 123 123</li>
+              <li><span>Email</span> customersupport@infinityarcade.com</li>
             </ul>
           </div>
         </div>
@@ -62,31 +71,34 @@
                 </div>
               </div>
               <div class="col-lg-12">
-                <form id="contact-form" action="" method="post">
+                <form id="contact-form" action="<%= (inq.getinquaryID() == null) ? "AddInquary" : "UpdateInquary" %>" method="post">
                   <div class="row">
+                  <% if(inq.getinquaryID() !=null) { %>
+                  <div class="col-lg-6">
+                      <fieldset>
+                        <input type="text" name="inquaryID" id="inquaryID" value="<%=  inq.getinquaryID() %>"  readonly>
+                      </fieldset>
+                    </div>
+                   <% } %>
+                    
                     <div class="col-lg-6">
                       <fieldset>
-                        <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                        <input type="text" name="name" id="name" placeholder="Your Name..." autocomplete="on" value="<%= (inq.getinquaryID() != null) ? inq.getname() : "" %>"  required>
                       </fieldset>
                     </div>
                     <div class="col-lg-6">
                       <fieldset>
-                        <input type="surname" name="surname" id="surname" placeholder="Your Surname..." autocomplete="on" required>
+                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." value="<%= (inq.getinquaryID() != null) ? inq.getEmail() : "" %>"required>
                       </fieldset>
                     </div>
                     <div class="col-lg-6">
                       <fieldset>
-                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                        <input type="text" name="subject" id="subject" <% if(inq.getinquaryID() == null){ %>style="width:210%" <% } %> placeholder="Subject..." autocomplete="on" value="<%= (inq.getinquaryID() != null) ? inq.getSubject() : "" %>" required>
                       </fieldset>
                     </div>
                     <div class="col-lg-12">
                       <fieldset>
-                        <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                        <textarea name="message" id="message" placeholder="Your Message" required><%= (inq.getinquaryID() != null) ? inq.getmessage() : "" %></textarea>
                       </fieldset>
                     </div>
                     <div class="col-lg-12">

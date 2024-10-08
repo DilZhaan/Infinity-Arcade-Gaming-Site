@@ -7,30 +7,31 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.InfinityArcade.models.ReviewModel;
+import com.InfinityArcade.models.Review;
 
 public class ReviewHandler {
-    public static boolean addReview(ReviewModel r) {
+    public static boolean addReview(Review r) {
         Connection con = null;
-        PreparedStatement pst = null;
+        PreparedStatement stmt = null;
         boolean returnValue = false;
 
         try {
             con = DBConnection.initializeDatabase();
 
           //Query
-            String query = "INSERT INTO review (user, gameId, date,rating,review) " +
-                           "VALUES (?, ?, ?, ?,?)";
+            String sql = "INSERT INTO Review (user_id, game_id, rating_value, comment) VALUES (?, ?, ?, ?)";
 
-            pst = con.prepareStatement(query);
-            pst.setString(1, r.getUser());
-            pst.setString(2, r.getGameId());
-            pst.setLong(3, r.getDate());
-            pst.setInt(4, r.getRating());
-            pst.setString(5, r.getReview());
+            // Prepare the SQL statement
+            stmt = con.prepareStatement(sql);
+
+            // Set the parameters for the prepared statement
+            stmt.setString(1, r.getUser());
+            stmt.setString(2, r.getGameId());
+            stmt.setString(3, r.getRating());
+            stmt.setString(4, r.getReview());
           
             
-            returnValue = (pst.executeUpdate() > 0);
+            returnValue = (stmt.executeUpdate() > 0);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,7 +39,7 @@ public class ReviewHandler {
             e.printStackTrace();
         } finally {
             try {
-                if (pst != null) pst.close();
+                if (stmt != null) stmt.close();
                 if (con != null) con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -48,8 +49,8 @@ public class ReviewHandler {
         return returnValue;
     }
     
-    public static List<ReviewModel> getAllReviews() {
-        List<ReviewModel> reviewList = new ArrayList<>();
+    public static List<Review> getAllReviews(String gameID) {
+        List<Review> reviewList = new ArrayList<>();
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -57,18 +58,21 @@ public class ReviewHandler {
         try {
             con = DBConnection.initializeDatabase();
 
-            String query = "SELECT * FROM review WHERE gameID = ? ";
+            String query = "SELECT * FROM Review WHERE game_id = ? ";
             pst = con.prepareStatement(query);
+            pst.setString(1, gameID);
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                ReviewModel  r1 = new ReviewModel();
-       
-                 r1.setUser(rs.getString("user"));
-                 r1.setGameId(rs.getString("gameid"));
-                 r1.setDate(rs.getLong("date"));
-                 r1.setRating(rs.getInt("rating"));
-                 r1.setReview(rs.getString("review"));
+                Review  r1 = new Review();
+
+                 r1.setReviewID(rs.getString("review_id"));
+                 r1.setUser(rs.getString("user_id"));
+                 r1.setPostedDate(rs.getString("created_at"));
+                 r1.setGameId(rs.getString("game_id"));
+                 r1.setUpdatedDate(rs.getString("updated_at"));
+                 r1.setRating(rs.getString("rating_value"));
+                 r1.setReview(rs.getString("comment"));
                 
 
                 reviewList.add(r1);
@@ -91,7 +95,7 @@ public class ReviewHandler {
    
 
     
-    public static boolean updateReview(ReviewModel r1) {
+    public static boolean updateReview(Review r1) {
         Connection con = null;
         PreparedStatement pst = null;
         boolean returnValue = false;
@@ -112,8 +116,8 @@ public class ReviewHandler {
             pst = con.prepareStatement(query);
             pst.setString(1, r1.getUser());
             pst.setString(2, r1.getGameId());
-            pst.setLong(3, r1.getDate());
-            pst.setInt(4, r1.getRating());
+            pst.setString(3, r1.getUpdatedDate());
+            pst.setString(4, r1.getRating());
             pst.setString(5, r1.getReview());
           
 
@@ -168,4 +172,4 @@ public class ReviewHandler {
         return returnValue; // Return true if deletion was successful, false otherwise
     }
 }
-    
+
