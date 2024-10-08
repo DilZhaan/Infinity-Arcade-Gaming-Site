@@ -1,0 +1,236 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.page-heading {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.page-heading h3 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.page-heading .breadcrumb {
+    font-size: 14px;
+    color: #6c757d; /* Text color */
+    background: none; /* Ensure no background color */
+    border: none; /* Ensure no border */
+    padding: 0; /* Remove extra padding */
+    margin: 0; /* Optional: Remove margin */
+}
+
+
+/* Styling for the user dashboard menu */
+.userDashboardMenu {
+    float: left;
+    width: 25%;
+    margin-right: 30px;
+}
+
+.userDashboardMenu .profilePic img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.navList {
+    margin-top: 20px;
+}
+
+.navList ul {
+    list-style: none;
+    padding: 0;
+}
+
+.navList ul li {
+    padding: 10px 15px;
+    background-color: #343a40;
+    color: white;
+    margin-bottom: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.navList ul li:hover {
+    background-color: #495057;
+}
+
+/* Styling for the content area */
+.content {
+    float: left;
+    width: 70%;
+}
+
+.basics {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.basics div {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    border-radius: 5px;
+    flex: 1;
+    margin: 0 10px;
+}
+
+.basics h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+
+.basics h3 span {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.form-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-container .form-group {
+    margin-bottom: 15px;
+}
+
+.form-container .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.form-container .form-group input,
+.form-container .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container .form-group button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container .form-group button:hover {
+    background-color: #0056b3;
+}
+
+/* Table styling */
+.userList {
+    margin-top: 30px;
+}
+
+.userList h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.userList table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.userList th, .userList td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.userList th {
+    background-color: #343a40;
+    color: white;
+}
+
+.userList tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.userList tr:hover {
+    background-color: #ddd;
+}
+
+.userList .btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.userList .btn-danger {
+    background-color: #dc3545;
+}
+
+.userList .btn-danger:hover {
+    background-color: #c82333;
+}
+
+.userList .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Positioning the Add Members button in the right corner */
+.addmem {
+    text-align: right;
+    margin-top: 15px;
+}
+
+.addmem button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.addmem button:hover {
+    background-color: #218838;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .basics {
+        flex-direction: column;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .userDashboardMenu {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+
+ 
+}

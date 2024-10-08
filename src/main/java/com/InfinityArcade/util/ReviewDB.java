@@ -20,6 +20,7 @@ public class ReviewDB {
 	        return DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
 	    }
 	}
+}
 
 	
 	

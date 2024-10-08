@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.InfinityArcade.models.Review" %>
+<%@ page import="com.InfinityArcade.util.ReviewHandler" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +22,9 @@
 </head>
 <body>
 	<jsp:include page="assets/config/header.jsp" />
-	
+	<%
+        List<Review> reviews = ReviewHandler.getAllReviews(request.getParameter("gameID")); 
+      %>
 	  <div class="page-heading header-text">
 	    <div class="container">
 	      <div class="row">
@@ -34,41 +40,52 @@
     
     <div class="table-card">
             <h2>Game Reviews</h2>
-            <div class="reviewCard">
-            	<div class="reviewInfo">
-            		<label class="Reviewer">User1</label>
-            		<label class="Game">COD MW</label>
-            		<label class="Rating">5.0</label>
-            	</div>
-            	<div class="ReviewDesc">
-            		<p class="reviewDescription">kjdsbfhiojfd o dnsiofdgjofskdv iupaodsjbf dnv;pifediof</p>
-            	</div>
-            	<div class="revFooter">
-            		<div class="date">
-            			<label class="revDate">2023/32/32</label>
-            		</div>
-            		<div class="revController">
-            		<a href="#" class="revDate">edit</a>
-            		<a href="#" class="revDate">delete</a>
-            		</div>
-            	</div>
-            </div>
+            <%
+                for (Review rev : reviews) {
+            %>
+	            <div class="reviewCard">
+	            	<div class="reviewInfo">
+	            		<label class="Reviewer"><%= rev.getUser() %></label>
+	            		<label class="Game"><%= rev.getGameId() %></label>
+	            		<label class="Rating"><%= rev.getRating() %></label>
+	            	</div>
+	            	<div class="ReviewDesc">
+	            		<p class="reviewDescription"><%= rev.getReview() %></p>
+	            	</div>
+	            	<div class="revFooter">
+	            		<div class="date">
+	            			<label class="revDate"><%= rev.getPostedDate() %></label>
+	            			<label class="revDate"> | </label>
+	            			<label class="revDate"><%= rev.getUpdatedDate() %></label>
+	            		</div>
+	            		
+	            		<% if (session.getAttribute("username") != null && session.getAttribute("username").equals(rev.getUser())) { %>
+	            		<div class="revController"> 
+	            		<a href="Review.jsp?revID=<%= rev.getReviewID() %>" class="revDate">edit</a>
+	            		<a href="DeleteReview?revID=<%= rev.getReviewID() %>" class="revDate">delete</a>
+	            		</div>
+	            		<% } %>
+	            		
+	            	</div>
+	            </div>
+            <% } %>
+            
         </div>
         
         
         <div class="form-card">
             <h2>Submit Your Game Review</h2>
             <feildset>
-            <form id="reviewForm" action="#" method="post">
+            <form id="reviewForm" action="ReviewAddServlet" method="post">
             
                  <label for="User">User</label>
-                <input  id="user" name="user"  readonly>
+                <input  id="user" name="user" value="<%= session.getAttribute("username") %>"  readonly>
                 
                 <label for="Gameid">GameId</label>
-                <input id="gameid" name="gameid"  readonly>
+                <input id="gameid" name="gameid" value="<%= request.getParameter("gameID") %>"  readonly>
                                
                 <label for="rating">Rating:</label>
-                <input type="number" id="rating" name="rating" min="1" max="10" required>
+                <input type="number" id="rating" name="rating" min="1" max="5" required>
                 
                 <label for="review">Review:</label>
                 <textarea id="review" name="review" rows="4" required></textarea>

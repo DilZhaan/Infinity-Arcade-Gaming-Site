@@ -18,7 +18,7 @@
   <servlet-mapping>
     <servlet-name>SignIn</servlet-name>
     <url-pattern>/SignIn</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>  
   <servlet>
     <description></description>
     <display-name>AddGame</display-name>
@@ -61,13 +61,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AddReview</display-name>
-    <servlet-name>AddReview</servlet-name>
-    <servlet-class>com.InfinityArcade.Servelet.AddReview</servlet-class>
+    <display-name>ReviewAddServlet</display-name>
+    <servlet-name>ReviewAddServlet</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.ReviewAddServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AddReview</servlet-name>
-    <url-pattern>/AddReview</url-pattern>
+    <servlet-name>ReviewAddServlet</servlet-name>
+    <url-pattern>/ReviewAddServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -91,13 +91,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AddInquire</display-name>
-    <servlet-name>AddInquire</servlet-name>
-    <servlet-class>com.InfinityArcade.Servelet.AddInquire</servlet-class>
+    <display-name>AddInquary</display-name>
+    <servlet-name>AddInquary</servlet-name>
+    <servlet-class>com.InfinityArcade.Servelet.AddInquary</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AddInquire</servlet-name>
-    <url-pattern>/AddInquire</url-pattern>
+    <servlet-name>AddInquary</servlet-name>
+    <url-pattern>/AddInquary</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -109,14 +109,13 @@
     <servlet-name>UpdateInquary</servlet-name>
     <url-pattern>/UpdateInquary</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>DeleteInquary</display-name>
+<servlet>
     <servlet-name>DeleteInquary</servlet-name>
     <servlet-class>com.InfinityArcade.Servelet.DeleteInquary</servlet-class>
-  </servlet>
-  <servlet-mapping>
+</servlet>
+<servlet-mapping>
     <servlet-name>DeleteInquary</servlet-name>
     <url-pattern>/DeleteInquary</url-pattern>
-  </servlet-mapping>
+</servlet-mapping>
+
 </web-app>

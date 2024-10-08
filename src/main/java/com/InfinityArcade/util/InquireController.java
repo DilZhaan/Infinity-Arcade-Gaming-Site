@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.InfinityArcade.models.Game;
 import com.InfinityArcade.models.Inquary;
 
 public class InquireController {
@@ -18,17 +17,17 @@ public class InquireController {
 	        try {
 	            con = DBConnection.initializeDatabase();
 
-	            String query = "INSERT INTO Inquary (inquireID, userID, name, email, subject, message) " +
-	                           "VALUES (?, ?, ?, ?, ?, ?)";
+	            String query = "INSERT INTO Inquary ( userID, name, email, subject, message ) " +
+	                           "VALUES ( ?, ?, ?, ?, ? )";
 
 	            pst = con.prepareStatement(query);
-	            pst.setString(1, newInquary.getinquaryID());
 	            pst.setString(1, newInquary.getUserID());
-	            pst.setString(1, newInquary.getname());
-	            pst.setString(1, newInquary.getEmail());
-	            pst.setString(1, newInquary.getSubject());
-	            pst.setString(1, newInquary.getmessage());
+	            pst.setString(2, newInquary.getname());
+	            pst.setString(3, newInquary.getEmail());
+	            pst.setString(4, newInquary.getSubject());
+	            pst.setString(5, newInquary.getmessage());
 	           
+	            
 	            
 
 	            pst.executeUpdate();
@@ -49,33 +48,48 @@ public class InquireController {
 
 	}
 	
-	public static List<Inquary> readAllInquary(String userID, Object inquary) {
-
-        List<Inquary> inquaryList = new ArrayList<>();
+	public static List<Inquary> readAllInquary(String username) {
+        List<Inquary> inquaries = new ArrayList<>();
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
 
         try {
+            // Establish the database connection
             con = DBConnection.initializeDatabase();
 
-            String query = "SELECT * FROM inquary WHERE ";
-            pst = con.prepareStatement(query);
-            rs = pst.executeQuery();
+            // Ensure the connection is not null
+            if (con != null) {
+                String query = "SELECT * FROM Inquary WHERE userID = ?";
+                pst = con.prepareStatement(query);
+	            pst.setString(1, username);
 
-            while (rs.next()) {
-            	Inquary inquary1 = new Inquary();
-                inquary1.setinquaryID(rs.getString("InquaryID"));
-                inquary1.setName(rs.getString("Name"));
-                inquary1.setEmail(rs.getString("Email"));
-                inquary1.setSubject(rs.getString("Subject"));
-                inquary1.setmessage(rs.getString("Message"));
-                
+                // Execute the query
+                rs = pst.executeQuery();
 
-                inquaryList.add(inquary1);
+                // Check if rs is null before accessing it
+                if (rs != null) {
+                    while (rs.next()) {
+                        Inquary inq = new Inquary();
+                        inq.setinquaryID(rs.getString("inquireID"));
+                        inq.setName(rs.getString("name"));
+                        inq.setEmail(rs.getString("email"));
+                        inq.setSubject(rs.getString("subject"));
+                        inq.setmessage(rs.getString("message"));
+
+                        inquaries.add(inq);
+                    }
+                } else {
+                    System.out.println("ResultSet is null. Query may have failed.");
+                }
+            } else {
+                System.out.println("Database connection failed.");
             }
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -87,9 +101,61 @@ public class InquireController {
             }
         }
 
-        return inquaryList;
-    
-	}
+        return inquaries;
+    }
+	
+	public static Inquary getInq(String inqID) {
+		Inquary inq = new Inquary();
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            // Establish the database connection
+            con = DBConnection.initializeDatabase();
+
+            // Ensure the connection is not null
+            if (con != null) {
+                String query = "SELECT * FROM Inquary WHERE inquireID = ? LIMIT 1";
+                pst = con.prepareStatement(query);
+	            pst.setString(1, inqID);
+
+                // Execute the query
+                rs = pst.executeQuery();
+
+                // Check if rs is null before accessing it
+                if (rs.next()) {
+                    
+                    inq.setinquaryID(rs.getString("inquireID"));
+                    inq.setName(rs.getString("name"));
+                    inq.setEmail(rs.getString("email"));
+                    inq.setSubject(rs.getString("subject"));
+                    inq.setmessage(rs.getString("message"));
+
+                } else {
+                    System.out.println("ResultSet is null. Query may have failed.");
+                }
+            } else {
+                System.out.println("Database connection failed.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return inq;
+    }
 	public static boolean updateInquary(Inquary updatedInquary) {
 		
 	        Connection con = null;
@@ -100,8 +166,7 @@ public class InquireController {
 	            con = DBConnection.initializeDatabase();
 
 	            
-	            String query = "UPDATE inquary SET Name = ?, Email = ?, Subject = ?, Message = ?, updatedDate = NOW() " +
-	                           "WHERE inquaryID = ?";
+	            String query = "UPDATE Inquary SET name = ?, email = ?, subject = ?, message = ? WHERE inquireID = ?";
 
 	            
 	            if (updatedInquary.getinquaryID() == null) {
@@ -113,7 +178,7 @@ public class InquireController {
 	            pst.setString(2, updatedInquary.getEmail());
 	            pst.setString(3, updatedInquary.getSubject());
 	            pst.setString(4, updatedInquary.getmessage());
-	            pst.setString(5, updatedInquary.getinquaryID()); // Use inquaryID to identify which game to update
+	            pst.setString(5, updatedInquary.getinquaryID());
 
 	            returnValue = (pst.executeUpdate() > 0);
 
@@ -132,8 +197,7 @@ public class InquireController {
 
 	        return returnValue;
 	    }
-
-	}
+	
 	public static boolean deleteInquary(String inquaryID) {
 		Connection con = null;
         PreparedStatement pst = null;
@@ -143,7 +207,7 @@ public class InquireController {
             con = DBConnection.initializeDatabase(); // Initialize your database connection
 
             // Prepare SQL DELETE statement
-            String query = "DELETE FROM inquary WHERE inquaryID = ?";
+            String query = "DELETE FROM Inquary WHERE inquireID = ?";
             
             pst = con.prepareStatement(query);
             pst.setString(1, inquaryID);

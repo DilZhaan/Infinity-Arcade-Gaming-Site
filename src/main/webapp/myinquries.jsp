@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.InfinityArcade.models.Inquary" %>
+<%@ page import="com.InfinityArcade.util.InquireController" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -97,6 +100,10 @@
     </head>
     <body>
      <jsp:include page="assets/config/header.jsp" />
+     
+     <%
+        List<Inquary> Inquaries = InquireController.readAllInquary((String) session.getAttribute("username")); 
+      %>
 
     <div class="page-heading header-text">
         <div class="container">
@@ -115,15 +122,15 @@
                         <img src="../images/userProfilePic.jpeg" alt="user">
                     </div>
                     <div class="userName">
-                        <span><?php echo $_SESSION['fname']." ".$_SESSION['lname']; ?></span>
+                        <span><%= (String)session.getAttribute("fname") %> <%= (String)session.getAttribute("lname") %></span>
                     </div>
                 </div>
                 <div class="navList">
                     <ul class="linkList">
                         <li onclick="loadContent('myinfo');">Profile Information</li>
                         <li onclick="loadContent('inquary');">My Inquaries</li>
-                        <li style="background-color: rgba(125, 23, 41, 0.81); color:#fff" onclick=" if(window.confirm('Do you want to Delete Your Account?')){document.location = '../Process/delAcc-Process.php';}"> Delete Account </li>
-                        <li style="background-color: #f00;color:#fff" onclick="if(window.confirm('Do you want to Sign Out?')){document.location = '../Process/signOut-Process.php';}" id="logout"> Sign Out </li>
+                        <li style="background-color: rgba(125, 23, 41, 0.81); color:#fff" onclick=" if(window.confirm('Do you want to Delete Your Account?')){document.location = '';}"> Delete Account </li>
+                        <li style="background-color: #f00;color:#fff" onclick="if(window.confirm('Do you want to Sign Out?')){document.location = '';}" id="logout"> Sign Out </li>
                     </ul>
                 </div>
       </div>
@@ -152,6 +159,37 @@
                                     Controllers
                                 </th>
                             </tr>
+                            
+                            <%
+			                    for (Inquary inq : Inquaries) {
+			                %>
+			                
+				                <tr class="Inqary">
+				                    <td>
+				                        <label for="Inqary"><%= inq.getinquaryID() %></label>
+				                    </td>
+				                    <td>
+				                        <label for="Inqary"><%= inq.getname() %> </label>
+				                    </td>
+				                    <td>
+				                        <label for="Inqary"><%= inq.getEmail() %> </label>
+				                    </td>
+				                    <td>
+				                        <label for="Inqary"><%= inq.getSubject() %> </label>
+				                    </td>
+				                    <td>
+				                        <label for="Inqary"><%= inq.getmessage() %> </label>
+				                    </td>
+				                    <td class="Controllers">
+				                        <button id="editBtn" onclick="if(window.confirm('Do you want to Edit this Inquary?')){
+				                            document.location = 'contact.jsp?inquaryID=<%= inq.getinquaryID() %>';};"> Edit </button>
+				
+				                        <button id="delBtn" onclick="if(window.confirm('Do you want to Delete this Inquary?')){document.location = 'DeleteInquary?inquaryID=<%= inq.getinquaryID() %>';};">Delete </button>
+				                    </td>
+				                </tr>
+			                <%
+			                    }
+			                %>
                         </table>
                     </div>
                 </div>
