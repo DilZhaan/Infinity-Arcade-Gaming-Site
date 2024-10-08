@@ -14,6 +14,7 @@ public class ReviewAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get the form parameters
     	Review review = new Review();
+    	
         review.setUser(request.getParameter("user"));
         review.setGameId(request.getParameter("gameid"));
         review.setRating(request.getParameter("rating"));

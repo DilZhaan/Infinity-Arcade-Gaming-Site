@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	if(session.getAttribute("username") == null ){
+		response.sendRedirect("signIn.jsp");
+        return;
+	}
+	if((Integer)session.getAttribute("is_admin") == 0){
+		response.sendRedirect("UserProfile.jsp");
+	    return;
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +38,7 @@
       <div class="row">
         <div class="col-lg-12">
           <h3>Add User</h3>
-          <span class="breadcrumb"><a href="index.jsp">Home</a>  >  Sign In</span>
+          <span class="breadcrumb"><a href="index.jsp">Home</a>  >  Add User</span>
         </div>
       </div>
     </div>
@@ -35,24 +46,23 @@
 
 
     <div class="body-content">
-            <div class="userDashboardMenu">
-                <div class="user">
-                    <div class="profilePic">
-                        <img src="assets/images/userProfilePic.jpeg" alt="user">
-                    </div>
-                    
-                </div>
+           <div class="userDashboardMenu">
+                
                 <div class="navList">
                     <ul class="linkList">
-                        <li onclick=""> Reports</li>
-                        <li onclick="document.location = 'Review.jsp';"> Reviews</li>
-                        <li onclick="document.location = 'UserManagement.jsp';"> User Management </li>
-                        <li onclick="document.location = 'AdminProfile.jsp';"> Profile Informations </li>
-                       
-
-                        <li style="background-color: rgba(125, 23, 41, 0.81); color:#fff" onclick=" if(window.confirm('Do you want to Delete Your Account?')){document.location = 'WEB-INF/DeleteAccount.jsp';}"> Delete Account </li>
-
-                        <li style="background-color: #f00;color:#fff" onclick=" if(window.confirm('Do you want to Sign Out?')){document.location = 'WEB-INF/SignOut.jsp';}"> Sign Out </li>
+                        <li onclick="document.location = 'myinquries.jsp';"> My Inquiry</li>
+                        
+                         <% if ((Integer)session.getAttribute("is_admin") == 1) { %>
+		                
+		                <li onclick="document.location = 'UserMnagement.jsp';"> User Management</li>
+		                
+		                
+		            	<% }
+                         %>
+		            	
+		                
+		                <li onclick="document.location = 'UserProfile.jsp';"> Profile Information</li>
+		            	
                     </ul>
                 </div>
             </div>
@@ -78,7 +88,7 @@
 
     <div class="form-container">
         <h2>Add User</h2>
-        <form action="UserServletduplicate" method="POST">
+        <form action="AddUserAcc" method="POST">
             <div class="form-group">
                 <label for="uname">UserName</label>
                 <input type="text" id="uname" name="uname" required>

@@ -16,28 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `games`
+-- Table structure for table `inquary`
 --
 
-DROP TABLE IF EXISTS `games`;
+DROP TABLE IF EXISTS `inquary`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `games` (
-  `game_id` varchar(50) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
-  `description` text,
-  PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `inquary` (
+  `inquireID` int NOT NULL AUTO_INCREMENT,
+  `userID` char(12) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `message` text,
+  PRIMARY KEY (`inquireID`),
+  KEY `inqFK` (`userID`),
+  CONSTRAINT `inqFK` FOREIGN KEY (`userID`) REFERENCES `user` (`Username`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `games`
+-- Dumping data for table `inquary`
 --
 
-LOCK TABLES `games` WRITE;
-/*!40000 ALTER TABLE `games` DISABLE KEYS */;
-/*!40000 ALTER TABLE `games` ENABLE KEYS */;
+LOCK TABLES `inquary` WRITE;
+/*!40000 ALTER TABLE `inquary` DISABLE KEYS */;
+/*!40000 ALTER TABLE `inquary` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-21 20:40:18
+-- Dump completed on 2024-10-09  0:15:17

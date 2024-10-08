@@ -7,8 +7,15 @@
 <%@ page import="com.InfinityArcade.util.UserDAOduplicate" %>
 
 <%
-    UserDAOduplicate userDAOD = new UserDAOduplicate();
-    List<Userduplicate> listUsers = userDAOD.listUsers();
+	if(session.getAttribute("username") == null ){
+		response.sendRedirect("signIn.jsp");
+        return;
+	}
+	if((Integer)session.getAttribute("is_admin") == 0){
+		response.sendRedirect("UserProfile.jsp");
+	    return;
+	}
+    List<Userduplicate> listUsers = UserDAOduplicate.listUsers();
 %>
 
 <!DOCTYPE html>
@@ -46,7 +53,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h3>User Management</h3>
-                    <span class="breadcrumb"><a href="index.jsp">Home</a>  >  Sign In</span>
+                    <span class="breadcrumb"><a href="index.jsp">Home</a>  >  User Management</span>
                 </div>
             </div>
         </div>
@@ -54,44 +61,28 @@
 
     <div class="body-content">
         <div class="userDashboardMenu">
-            <div class="user">
-                <div class="profilePic">
-                    <img src="assets/images/userProfilePic.jpeg" alt="user">
+                
+                <div class="navList">
+                    <ul class="linkList">
+                        <li onclick="document.location = 'myinquries.jsp';"> My Inquiry</li>
+                        
+                         <% if ((Integer)session.getAttribute("is_admin") == 1) { %>
+		                
+		                <li onclick="document.location = 'UserMnagement.jsp';"> User Management</li>
+		                
+		                
+		            	<% }
+                         %>
+		            	
+		                
+		                <li onclick="document.location = 'UserProfile.jsp';"> Profile Information</li>
+		            	
+                    </ul>
                 </div>
             </div>
-            <div class="navList">
-                <ul class="linkList">
-                    <li onclick=""> Reports</li>
-                    <li onclick="document.location = 'Review.jsp';"> Reviews</li>
-                    <li onclick="document.location = 'UserManagement.jsp';"> User Management </li>
-                    <li onclick="document.location = 'AdminProfile.jsp';"> Profile Informations </li>
-                    <li style="background-color: rgba(125, 23, 41, 0.81); color:#fff" 
-                        onclick=" if(window.confirm('Do you want to Delete Your Account?')){document.location = 'WEB-INF/DeleteAccount.jsp';}">
-                        Delete Account 
-                    </li>
-                    <li style="background-color: #f00;color:#fff" 
-                        onclick=" if(window.confirm('Do you want to Sign Out?')){document.location = 'WEB-INF/SignOut.jsp';}">
-                        Sign Out
-                    </li>
-                </ul>
-            </div>
-        </div>
 
         <div class="content">
-            <div class="basics">
-                <div class="tusers">
-                    <h3>Total Users<br><span>100</span></h3>
-                </div>
-                <div class="susers">
-                    <h3>Staff Users<br><span>20</span></h3>
-                </div>
-                <div class="members">
-                    <h3>Members<br><span>80</span></h3>
-                </div>
-                <div class="iusers">
-                    <h3>Inactive Users<br><span>0</span></h3>
-                </div>
-            </div>
+            
 
             <div class="userlistJ">
                 <div class="userList">
@@ -99,7 +90,7 @@
 
                     <!-- Add Members button -->
                     <div class="addmem">
-            <button onclick="document.location = 'UserServletduplicate?action=new';">Add Members</button>
+            <button onclick="document.location = 'AddUser.jsp';">Add Members</button>
        			 	</div>
 
                     <table class="table table-hover table-dark">
@@ -124,14 +115,11 @@
 								        <td><%= user.isAdmin() ? "Admin" : "User" %><td>
 								        
 								        
-                                    <a href="UserServletduplicate?action=edit&username=<%= user.getUsername() %>">
-                                        <button class="btn btn-primary">Update</button>
-                                    </a>
+                                        <button onclick="document.location ='UpdateUser.jsp?username=<%= user.getUsername() %>'" class="btn btn-primary">Update</button>
+                        
                                     
-                                    <form action="UserServletduplicate?action=delete" method="post" style="display:inline;">
-                                        <input type="hidden" name="username" value="<%= user.getUsername() %>">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                        <button onclick="if(window.confirm('Do you want to Delete this User?')){document.location = 'DelUser?username=<%= user.getUsername() %>';};" class="btn btn-danger">Delete</button>
+
                                 </td>
                             </tr>
                                 <%
