@@ -23,14 +23,17 @@
 <body>
 	<jsp:include page="assets/config/header.jsp" />
 	<%
-        List<Review> reviews = ReviewHandler.getAllReviews(request.getParameter("gameID")); 
-      %>
+	    String gameID = request.getParameter("gameID");
+	    String revID = request.getParameter("revID");
+	    List<Review> reviews = (gameID != null) ? ReviewHandler.getAllReviews(gameID) : new ArrayList<>();
+	    Review review = (revID != null) ? ReviewHandler.getReview(revID) : null;
+	%>
 	  <div class="page-heading header-text">
 	    <div class="container">
 	      <div class="row">
 	        <div class="col-lg-12">
-	          <h3>Contact Us</h3>
-	          <span class="breadcrumb"><a href="index.jsp">Home</a>  >  Contact Us</span>
+	          <h3>Review</h3>
+	          <span class="breadcrumb"><a href="index.jsp">Home</a>  >  <a href="shop.jsp">Shop</a> > <a href="product-details.jsp?gameID=<%= gameID %>"><%= gameID %></a> >Review </span>
 	        </div>
 	      </div>
 	    </div>
@@ -61,8 +64,8 @@
 	            		
 	            		<% if (session.getAttribute("username") != null && session.getAttribute("username").equals(rev.getUser())) { %>
 	            		<div class="revController"> 
-	            		<a href="Review.jsp?revID=<%= rev.getReviewID() %>" class="revDate">edit</a>
-	            		<a href="DeleteReview?revID=<%= rev.getReviewID() %>" class="revDate">delete</a>
+	            		<a href="Review.jsp?gameID=<%= rev.getGameId() %>&revID=<%= rev.getReviewID() %>" class="revDate">edit</a>
+	            		<a href="DeleteReview?gameID=<%= rev.getGameId() %>&revID=<%= rev.getReviewID() %>" class="revDate">delete</a>
 	            		</div>
 	            		<% } %>
 	            		
@@ -75,9 +78,14 @@
         
         <div class="form-card">
             <h2>Submit Your Game Review</h2>
-            <feildset>
-            <form id="reviewForm" action="ReviewAddServlet" method="post">
+            <fieldset>
+            <form id="reviewForm" action="<%= (review != null)? "UpdateReview" : "ReviewAddServlet" %>" method="post">
             
+            	<% if(review != null){%>
+            		<label for="RevID">Review ID</label>
+                	<input  id="RevID" name="RevID" value="<%= review.getReviewID() %>"  readonly>
+            	 <% } %>
+            	 
                  <label for="User">User</label>
                 <input  id="user" name="user" value="<%= session.getAttribute("username") %>"  readonly>
                 
@@ -85,14 +93,17 @@
                 <input id="gameid" name="gameid" value="<%= request.getParameter("gameID") %>"  readonly>
                                
                 <label for="rating">Rating:</label>
-                <input type="number" id="rating" name="rating" min="1" max="5" required>
+                <input type="number" id="rating" name="rating" min="1" max="5" <% if(review != null){%> value = "<%= review.getRating() %>" <% } %> required>
                 
                 <label for="review">Review:</label>
-                <textarea id="review" name="review" rows="4" required></textarea>
+                <textarea id="review" name="review" rows="4"  required><% if(review != null){%><%= review.getReview() %><% } %></textarea>
                 
-                <button type="submit" name="submit">Submit</button>
+                <button type="submit" name="submit" <% if (session.getAttribute("username") == null) { %>disabled <% } %> > <%= (review != null) ? "Update" : "Submit" %> </button>
+                <% if(review != null) { %>
+                	<button onclick="document.location ='Review.jsp?gameID=<%= request.getParameter("gameID") %>'" style="background-color:black;"> Clear </button>
+                <% } %>
             </form>
-            </feildset>
+            </fieldset>
         </div>
         
         

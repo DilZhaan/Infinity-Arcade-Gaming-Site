@@ -4,6 +4,18 @@
 <%@ page import="com.InfinityArcade.util.UserDAOduplicate" %>
 
 
+<%
+	Userduplicate user = null;
+		//Check if the user is NOT logged in
+		if (session.getAttribute("username") == null) {
+			 response.sendRedirect("signIn.jsp");
+			 return; // Prevent further processing
+		} else {
+		 user = UserDAOduplicate.getUserByUsername((String) session.getAttribute("username"));
+		}
+
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +31,7 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/infinityArcade-gaming.css">
+    <link rel="stylesheet" href="assets/css/generalStyle.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
@@ -31,29 +44,29 @@
       <div class="row">
         <div class="col-lg-12">
           <h3>Profile Information</h3>
-          <span class="breadcrumb"><a href="index.jsp">Home</a>  >  Sign In</span>
+          <span class="breadcrumb"><a href="index.jsp">Home</a>  >  User Profile</span>
         </div>
       </div>
     </div>
   </div>
         <div class="body-content">
             <div class="userDashboardMenu">
-                <div class="user">
-                    <div class="profilePic">
-                        <img src="assets/images/userProfilePic.jpeg" alt="user">
-                    </div>
-                </div>
+                
                 <div class="navList">
                     <ul class="linkList">
-                        <li onclick=""> Reports</li>
-                        <li onclick="document.location = 'Review.jsp';"> Reviews
-                        <li onclick="document.location = 'UserManagement.jsp';"> User Management </li>
-                        <li onclick="document.location = 'AdminProfile.jsp';"> Profile Informations </li>
-                      
-
-                        <li style="background-color: rgba(125, 23, 41, 0.81); color:#fff" onclick=" if(window.confirm('Do you want to Delete Your Account?')){document.location ='WEB-INF/DeleteAccount.jsp';}"> Delete Account </li>
-
-                        <li style="background-color: #f00;color:#fff" onclick=" if(window.confirm('Do you want to Sign Out?')){document.location = 'WEB-INF/SignOut.jsp';}"> Sign Out </li>
+                        <li onclick="document.location = 'myinquries.jsp';"> My Inquiry</li>
+                        
+                         <% if ((Integer)session.getAttribute("is_admin") == 1) { %>
+		                
+		                <li onclick="document.location = 'UserMnagement.jsp';"> User Management</li>
+		                
+		                
+		            	<% }
+                         %>
+		            	
+		                
+		                <li onclick="document.location = 'UserProfile.jsp';"> Profile Information</li>
+		            	
                     </ul>
                 </div>
             </div>
@@ -67,54 +80,28 @@
                         <form action="UserServletduplicate" method="POST">
                                     <div class="formElement">
                                         <label>First Name : </label>
-                                            <input type="text" id="fname" name="fname" placeholder="First Name" pattern="[A-Z][a-z]+" value="${fname}"required>
+                                            <input type="text" id="fname" name="fname" placeholder="First Name" pattern="[A-Z][a-z]+" value="<%= (user != null) ? user.getFirstName() : "" %>" readonly>
                                     </div>
                                     <div class="formElement">
                                         <label>Last Name :</label>
-                                            <input type="text" id="lname" name="lname" placeholder="Last Name" pattern="[A-Z][a-z]+" value="${lname}"required>
+                                            <input type="text" id="lname" name="lname" placeholder="Last Name" pattern="[A-Z][a-z]+" value="<%= (user != null) ? user.getLastName() : "" %>"readonly>
                                     </div>
                                     <div class="formElement">
                                         <label>Address :</label>
-                                            <input  type="text" id="address" name="address" placeholder="Address" value="${address}"required>
+                                            <input  type="text" id="address" name="address" placeholder="Address" value="<%= (user != null) ? user.getAddress() : "" %>"readonly>
                                     </div>
                                     <div class="formElement">
                                         <label>Mobile No :</label>
-                                            <input type="phone" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[\+][0-9]{10,}" value="${phonenum}" required>
+                                            <input type="text" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[\+][0-9]{10,}" value="<%= (user != null) ? user.getMobile() : "" %>"  readonly>
                                     </div>
                                     <div class="formElement">
                                         <label>E-mail :</label>
-                                            <input type="email" id="mail" name="mail" placeholder="E-mail" value="${email}" required>
-                                    </div>
-                                    
-                                    <div class="submitButton">
-                                        <input type="submit" value="Save" name="Save">
+                                            <input type="email" id="mail" name="mail" placeholder="E-mail" value="<%= (user != null) ? user.getEmail() : "" %>"readonly>
                                     </div>
                         </form>
                     </div>
                 </div>
-                <div class="accDetailContainer">
-                    <h2>Account Details</h2>
-                    <div class="adForm">
-                        <form action="p" method="POST">
-                            <div class="formElement">
-                                <label>Username : </label>
-                                    <input type="text" id="username" value="username" disabled>
-                            </div>
-                            <div class="formElement">
-                                <label>New Password :</label>
-                                    <input type="password" id="newpwd" name="newpwd" placeholder="New Password" oninput="checkPwd()" pattern="[a-z A-Z 0-9 \. @ % #]{8,}{8,}"  required>
-                            </div>
-                            <div class="formElement">
-                                <label>Confirm Password :</label>
-                                    <input  type="password" id="cnfmpwd" name="cnfmpwd" placeholder="Confirm Password" oninput="checkPwd()" pattern="[a-z A-Z 0-9 \. @ % #]{8,}" required>
-                                    <span id="pwdStat"></span>
-                            </div>                              
-                            <div class="submitButton">
-                                <input type="submit" id="submitBtn" value="Save" name="Save" disabled>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                
                 </div>
         </div>
    <jsp:include page="assets/config/footer.jsp" />

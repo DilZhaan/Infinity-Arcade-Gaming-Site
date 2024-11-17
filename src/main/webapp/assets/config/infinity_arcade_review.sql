@@ -16,27 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `game_tags`
+-- Table structure for table `review`
 --
 
-DROP TABLE IF EXISTS `game_tags`;
+DROP TABLE IF EXISTS `review`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `game_tags` (
-  `game_id` varchar(50) NOT NULL,
-  `tag` varchar(50) NOT NULL,
-  PRIMARY KEY (`game_id`,`tag`),
-  CONSTRAINT `game_tags_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `review` (
+  `review_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` char(12) DEFAULT NULL,
+  `game_id` varchar(50) DEFAULT NULL,
+  `rating_value` float DEFAULT NULL,
+  `comment` text,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`review_id`),
+  KEY `user_id` (`user_id`),
+  KEY `game_id` (`game_id`),
+  CONSTRAINT `review_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`Username`),
+  CONSTRAINT `review_ibfk_2` FOREIGN KEY (`game_id`) REFERENCES `game` (`gameID`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `game_tags`
+-- Dumping data for table `review`
 --
 
-LOCK TABLES `game_tags` WRITE;
-/*!40000 ALTER TABLE `game_tags` DISABLE KEYS */;
-/*!40000 ALTER TABLE `game_tags` ENABLE KEYS */;
+LOCK TABLES `review` WRITE;
+/*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` VALUES (9,'dilzhan','PUBG001',3,'Best Game','2024-10-09 00:04:38','2024-10-09 00:04:38'),(10,'dilzhan','COD001',2,'Best Game','2024-10-09 00:05:05','2024-10-09 00:05:05'),(11,'dilzhaan','COD001',4,'Nice Game GG','2024-10-09 00:05:54','2024-10-09 00:05:54');
+/*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-21 20:40:18
+-- Dump completed on 2024-10-09  0:15:18

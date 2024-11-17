@@ -1,7 +1,13 @@
 package com.InfinityArcade.models;
 
 public class Userduplicate {
-    private String username;
+    @Override
+	public String toString() {
+		return "Userduplicate [username=" + username + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", address=" + address + ", mobile=" + mobile + ", email=" + email + ", password=" + password
+				+ ", isAdmin=" + isAdmin + "]";
+	}
+	private String username;
     private String firstName;
     private String lastName;
     private String address;
@@ -33,6 +39,12 @@ public class Userduplicate {
         this.email = email;
         this.isAdmin = isAdmin;
     }
+
+
+
+	public Userduplicate() {
+		
+	}
 
 
 

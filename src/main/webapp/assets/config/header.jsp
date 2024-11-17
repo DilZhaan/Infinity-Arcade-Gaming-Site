@@ -22,21 +22,20 @@
 
                           if (username == null) {
                       %>
-                              <!--   <li><a href="#" id="signUp">Sign up</a></li> -->
                               <li><a href="signIn.jsp" id="signIn">Sign In</a></li>
                       <%
                           } else {
                               // User is logged in
                               if (isAdmin != null && isAdmin == 1) {
                       %>
-                                  <li><a href="#" id="adminDashboard"><img src="assets/images/admin.png"> Admin :<%= session.getAttribute("username") %></a></li>
+                                  <li><a href="UserProfile.jsp" id="adminDashboard"><img src="assets/images/admin.png"> Admin :<%= session.getAttribute("username") %></a></li>
                                   <li>
                                   	<a href="LogoutServlet" onclick="return confirm('Are you sure you want to log out?');"><img src="assets/images/logout.png" > Log Out</a>
                                   </li>
                       <%
                               } else {
                       %>
-                                  <li><a href="#" id="userDashboard"><img src="assets/images/user.jpeg" style="border-radius:100%;">User :<%= session.getAttribute("username") %></a></li>
+                                  <li><a href="UserProfile.jsp" id="userDashboard"><img src="assets/images/user.jpeg" style="border-radius:100%;">User :<%= session.getAttribute("username") %></a></li>
                                   <li>
                                   	<a href="LogoutServlet" onclick="return confirm('Are you sure you want to log out?');"><img src="assets/images/logout.png" > Log Out</a>
                                   </li>

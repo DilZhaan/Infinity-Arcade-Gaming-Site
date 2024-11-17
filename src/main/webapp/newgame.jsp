@@ -5,6 +5,15 @@
 <%@ page import="com.InfinityArcade.util.GameManager" %>
 
 <%
+	if(session.getAttribute("username") == null ){
+		response.sendRedirect("signIn.jsp");
+	    return;
+	}
+	if((Integer)session.getAttribute("is_admin") == 0){
+		response.sendRedirect("UserProfile.jsp");
+	    return;
+	}
+	
 	String gameID = request.getParameter("gameID");
     Game game = GameManager.getGame(gameID); 
 

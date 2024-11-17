@@ -3,6 +3,15 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.InfinityArcade.models.Inquary" %>
 <%@ page import="com.InfinityArcade.util.InquireController" %>
+
+<%
+		//Check if the user is NOT logged in
+		if (session.getAttribute("username") == null) {
+			 response.sendRedirect("signIn.jsp");
+			 return; // Prevent further processing
+		} 
+
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -117,23 +126,25 @@
     </div>
     <div class="body-content">
     <div class="userDashboardMenu">
-                <div class="user">
-                    <div class="profilePic">
-                        <img src="../images/userProfilePic.jpeg" alt="user">
-                    </div>
-                    <div class="userName">
-                        <span><%= (String)session.getAttribute("fname") %> <%= (String)session.getAttribute("lname") %></span>
-                    </div>
-                </div>
+                
                 <div class="navList">
                     <ul class="linkList">
-                        <li onclick="loadContent('myinfo');">Profile Information</li>
-                        <li onclick="loadContent('inquary');">My Inquaries</li>
-                        <li style="background-color: rgba(125, 23, 41, 0.81); color:#fff" onclick=" if(window.confirm('Do you want to Delete Your Account?')){document.location = '';}"> Delete Account </li>
-                        <li style="background-color: #f00;color:#fff" onclick="if(window.confirm('Do you want to Sign Out?')){document.location = '';}" id="logout"> Sign Out </li>
+                        <li onclick="document.location = 'myinquries.jsp';"> My Inquiry</li>
+                        
+                         <% if ((Integer)session.getAttribute("is_admin") == 1) { %>
+		                
+		                <li onclick="document.location = 'UserMnagement.jsp';"> User Management</li>
+		                
+		                
+		            	<% }
+                         %>
+		            	
+		                
+		                <li onclick="document.location = 'UserProfile.jsp';"> Profile Information</li>
+		            	
                     </ul>
                 </div>
-      </div>
+            </div>
       <div class='content'>
             <div class="inquariesContainer">
                 <h3>Inquaries</h3>

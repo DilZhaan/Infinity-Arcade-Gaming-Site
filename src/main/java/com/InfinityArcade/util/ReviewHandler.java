@@ -93,7 +93,46 @@ public class ReviewHandler {
         return reviewList;
     }
    
+    public static Review getReview(String revID) {
+        Review r1 = new Review();
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
 
+        try {
+            con = DBConnection.initializeDatabase();
+
+            String query = "SELECT * FROM Review WHERE review_id = ? ";
+            pst = con.prepareStatement(query);
+            pst.setString(1, revID);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                 r1.setReviewID(rs.getString("review_id"));
+                 r1.setUser(rs.getString("user_id"));
+                 r1.setPostedDate(rs.getString("created_at"));
+                 r1.setGameId(rs.getString("game_id"));
+                 r1.setUpdatedDate(rs.getString("updated_at"));
+                 r1.setRating(rs.getString("rating_value"));
+                 r1.setReview(rs.getString("comment"));
+          
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return r1;
+    }
     
     public static boolean updateReview(Review r1) {
         Connection con = null;
@@ -104,8 +143,8 @@ public class ReviewHandler {
             con = DBConnection.initializeDatabase();
 
             // Corrected SQL query with proper syntax
-            String query = "UPDATE review SET user = ?, gameid = ?, date = ?, rating = ?, review = ?  " +
-                           "WHERE gameid = ?";
+            String query = "UPDATE review SET rating_value = ?, comment = ? " +
+                           "WHERE review_id = ?";
 
             // Check if gameID is null
             if (r1.getReview() == null) {
@@ -114,11 +153,9 @@ public class ReviewHandler {
             
 
             pst = con.prepareStatement(query);
-            pst.setString(1, r1.getUser());
-            pst.setString(2, r1.getGameId());
-            pst.setString(3, r1.getUpdatedDate());
-            pst.setString(4, r1.getRating());
-            pst.setString(5, r1.getReview());
+            pst.setString(1, r1.getRating());
+            pst.setString(2, r1.getReview());
+            pst.setString(3, r1.getReviewID());
           
 
             returnValue = (pst.executeUpdate() > 0);
@@ -171,5 +208,38 @@ public class ReviewHandler {
 
         return returnValue; // Return true if deletion was successful, false otherwise
     }
+    
+    public static boolean deleteReview(String revID) {
+		Connection con = null;
+        PreparedStatement pst = null;
+        boolean returnValue = false;
+
+        try {
+            con = DBConnection.initializeDatabase(); // Initialize your database connection
+
+            // Prepare SQL DELETE statement
+            String query = "DELETE FROM Review WHERE review_id = ?";
+            
+            pst = con.prepareStatement(query);
+            pst.setString(1, revID);
+
+            // Execute the update and check if any rows were affected
+            returnValue = (pst.executeUpdate() > 0);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            // Clean up resources
+            try {
+                if (pst != null) pst.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		return returnValue;
+	}
 }
 

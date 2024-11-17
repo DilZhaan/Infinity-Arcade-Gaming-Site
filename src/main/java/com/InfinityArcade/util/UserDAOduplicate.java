@@ -1,7 +1,5 @@
 package com.InfinityArcade.util;
 
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,7 +31,7 @@ public class UserDAOduplicate {
 		this.connection = connection;
 	}
 
-    public void addUser(Userduplicate user) throws ClassNotFoundException {
+    public static void addUser(Userduplicate user) throws ClassNotFoundException {
         String sql = "INSERT INTO user (Username, FirstName, LastName, Address, Mobile, Email, Password, Is_Admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (	Connection connection = DBConnection.initializeDatabase();
         		PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -51,36 +49,64 @@ public class UserDAOduplicate {
         }
     }
 
-    public void updateUser(Userduplicate user) throws ClassNotFoundException {
-        String sql = "UPDATE user SET FirstName=?, LastName=?, Address=?, Mobile=?, Email=?, Is_Admin=? WHERE Username=?";
+    public static void updateUser(Userduplicate user) throws ClassNotFoundException {
+        String sql = "UPDATE user SET FirstName=?, LastName=?, Address=?, Mobile= ?, Email= ?, Is_Admin= ? WHERE Username=?";
         try (	Connection connection = DBConnection.initializeDatabase();
         		PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, user.getUsername());
-            statement.setString(2, user.getFirstName());
-            statement.setString(3, user.getLastName());
-            statement.setString(4, user.getAddress());
-            statement.setString(5, user.getMobile());
-            statement.setString(6, user.getEmail());
-            statement.setString(7, user.getPassword());
-            statement.setBoolean(8, user.isAdmin());
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getAddress());
+            statement.setString(4, user.getMobile());
+            statement.setString(5, user.getEmail());
+            statement.setBoolean(6, user.isAdmin());
+            statement.setString(7, user.getUsername());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteUser(String username) throws ClassNotFoundException {
+    public static void deleteUser(String username) throws ClassNotFoundException {
         String sql = "DELETE FROM user WHERE Username=?";
         try (	Connection connection = DBConnection.initializeDatabase();
         		PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, username);
+            System.out.println(username);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
+    public static Userduplicate getUserDetails(String userID) throws ClassNotFoundException {
+        Userduplicate user = new Userduplicate();
+        String sql = "SELECT * FROM user WHERE username = ?";
+        
+        try (	Connection connection = DBConnection.initializeDatabase();
+        		PreparedStatement statement = connection.prepareStatement(sql)) {
+        		
+            statement.setString(1, userID);  // Set the parameter for the query
+            ResultSet resultSet = statement.executeQuery();  // Execute the query without passing the SQL string again
+            
+            if (resultSet.next()) {
+                user.setUsername(resultSet.getString("Username"));
+                user.setFirstName(resultSet.getString("FirstName"));
+                user.setLastName(resultSet.getString("LastName"));
+                user.setAddress(resultSet.getString("Address"));
+                user.setMobile(resultSet.getString("Mobile"));
+                user.setEmail(resultSet.getString("Email"));
+                user.setAdmin(resultSet.getInt("Is_Admin") == 1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 
-    public List<Userduplicate> listUsers() throws ClassNotFoundException {
+    
+    
+
+    public static List<Userduplicate> listUsers() throws ClassNotFoundException {
         List<Userduplicate> users = new ArrayList<>();
         String sql = "SELECT * FROM user";
         
@@ -107,7 +133,7 @@ public class UserDAOduplicate {
         return users;
     }
 
-	public Userduplicate getUserByUsername(String username) throws ClassNotFoundException {
+	public static Userduplicate getUserByUsername(String username) throws ClassNotFoundException {
 		
 		Userduplicate user = null;
 		    String sql = "SELECT * FROM user WHERE Username = ?";
