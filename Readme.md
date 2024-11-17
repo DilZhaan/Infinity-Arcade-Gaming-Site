@@ -39,7 +39,7 @@ This project utilizes:
 - **Thanushi Nethsarani:** User Management  
   Implemented user account creation, editing, and deletion features, ensuring proper role-based access and management.  
 
-- **[Your Name]:** Game Management  
+- **DilZhan Yapa:** Game Management  
   Developed dynamic pages for the Game Store, Product Details, and Home. Implemented logic to differentiate functionalities for Players and Admins. Created the image upload feature for efficient file handling.  
 
 ## Project Initialization  
